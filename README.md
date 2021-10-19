@@ -8,6 +8,14 @@ npm install
 ```
 npm run storybook
 ```
+### Add vue components at
+```
+src/compnents
+```
+### To display in storybook add stories at  
+```
+stories
+```
 ### Lints and fixes files
 ```
 npm run lint
