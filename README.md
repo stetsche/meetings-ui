@@ -12,11 +12,11 @@ npm run storybook
 ```
 src/compnents
 ```
-### To display in storybook add stories at  
+### To display components in storybook, add stories at  
 ```
 stories
 ```
-### Lints and fixes files
+### Lints and fixes files:
 ```
 npm run lint
 ```
