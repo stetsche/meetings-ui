@@ -48,7 +48,8 @@ export default {
       style += 'height:' + this.size + 'px;';
       style += 'background-color:' + this.backgroundColor + ';';
       style += 'display: flex;flex-direction: column;justify-content: center; text-align: center;';
-      style += 'font-size:' + this.size / this.initials.length + 'px;';
+      var divisor = this.initials.length == 1 ? 2 : this.initials.length;
+      style += 'font-size:' + this.size / divisor + 'px;';
       return style;
     }
   },

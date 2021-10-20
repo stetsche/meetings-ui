@@ -15,19 +15,19 @@ export const Primary = Template.bind({});
 Primary.args = {
    square: false,
    image: 'https://placekitten.com/500/500',
-   size: '200',
+   size: 200,
 };
 
 export const Square = Template.bind({});
 Square.args = {
    square: true,
    image: 'https://placekitten.com/400/400',
-   size: '200',
+   size: 200,
 };
 
 export const NoImage = Template.bind({});
 NoImage.args = {
    square: true,
-   size: '200',
+   size: 200,
    username: "My Name"
-};
+}
