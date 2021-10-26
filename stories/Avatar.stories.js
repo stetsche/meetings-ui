@@ -2,7 +2,7 @@ import Avatar from '../src/components/Avatar.vue';
 
 export default {
   component: Avatar,
-  title: 'Components/Avatar',
+  title: 'Archive/Avatar',
 };
 
 const Template = (args, { argTypes }) => ({

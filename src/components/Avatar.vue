@@ -28,10 +28,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-    }
-  },
   computed: {
     hasImage: function (){
       return this.image != null && this.image != '';
