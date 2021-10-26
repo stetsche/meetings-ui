@@ -2,7 +2,7 @@ import Card from '../src/components/Card.vue';
 
 export default {
   component: Card,
-  title: 'In Progress/Card',
+  title: 'Archive/Card',
 };
 
 export const Primary = () => ({
