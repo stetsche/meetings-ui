@@ -9,13 +9,9 @@
     v-bind:style="imageStyle"
     v-bind:alt="username"
   />
-  <div v-if="!this.loaded" v-bind:style="placeholderStyle"><span class="icon fa fa-file-image-o"></span></div>
+  <div v-if="!this.loaded" v-bind:style="placeholderStyle"><span class="fa fa-file-image-o"></span></div>
 </div>
 </template>
-
-<style scoped>
-  @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
-</style>
 
 <script>
 export default {
@@ -30,10 +26,10 @@ export default {
   },
   props: {
     size: { type: Number, default: 100 },
-    square: { type: Boolean, default: false },
-    offical: { type: Boolean, default: false },
+    form: { type: String, default: 'circle' },
     userId: { type: String, default: undefined },
     siteId: { type: String, default: undefined },
+    offical: { type: Boolean, default: false },
   },
   methods: {
     onLoad: function () {
@@ -41,11 +37,11 @@ export default {
     }
   },
   computed: {
-    form : function () {
-      return 'border-radius:' + (this.square ? this.sqareRadius : '50%') + ';';
+    borderRadius: function () {
+      return 'border-radius:' + (this.form == 'square'  ? this.sqareRadius : '50%') + ';';
     }, 
     imageStyle: function () {
-      var style = this.form; 
+      var style = this.borderRadius; 
       if(this.dark) {
         style += 'filter:brightness(75%);';
       }
@@ -62,7 +58,7 @@ export default {
       return style;
     },
     imageUrl: function () {
-      var url = window.location.host; 
+      var url = 'http://' + window.location.host;
       url += '/direct/profile/';
       url += this.userId + '/image';
       url += this.offical ? '/official' : this.size <= 80 ? '/avatar' : this.size <= 100 ? '/thumb' : '/default';
