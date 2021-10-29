@@ -3,13 +3,16 @@
   <img
     v-on:load="onLoad"
     v-show="this.loaded" 
-    v-bind:src="imageUrl"
-    v-bind:width="size"
-    v-bind:height="size"
-    v-bind:style="imageStyle"
-    v-bind:alt="username"
+    :src="imageUrl"
+    :width="size"
+    :height="size"
+    :style="imageStyle"
+    :alt="altText"
   />
-  <div v-if="!this.loaded" v-bind:style="placeholderStyle"><span class="fa fa-file-image-o"></span></div>
+  <div v-if="!this.loaded" v-bind:style="placeholderStyle">
+    <!-- This can be replaces with the icon component later -->
+    <span class="fa fa-file-image-o"></span>
+  </div>
 </div>
 </template>
 
@@ -26,8 +29,12 @@ export default {
   },
   props: {
     size: { type: Number, default: 100 },
-    form: { type: String, default: 'circle' },
-    userId: { type: String, default: undefined },
+    form: { 
+      type: String, 
+      default: 'circle',
+    },
+    userId: { type: String, required: true },
+    userName: { type: String, required: true },
     siteId: { type: String, default: undefined },
     offical: { type: Boolean, default: false },
   },
@@ -48,13 +55,14 @@ export default {
       return style;
     },
     placeholderStyle: function () {
-      var style = this.form;
+      var style = this.borderRadius;
       style += 'background-color:' + this.backgroundColor + ';';
       style += 'color:' + this.color + ';';
       style += 'width:' + this.size +'px;';
       style += 'height:' + this.size +'px;';
       style += 'display: flex;flex-direction: column;justify-content: center; text-align: center;';
       style += 'font-size:' + this.size / 2.5  + 'px;';
+      console.log(style);
       return style;
     },
     imageUrl: function () {
@@ -67,8 +75,8 @@ export default {
       }
       return url;
     },
-    username: function () {
-      return 'Some Name'
+    altText: function () {
+      return 'Profile Image of ' + this .userName;
     }
   },
 }
