@@ -1,12 +1,7 @@
 <template>
-<div>
-  <button type="button" :class="[background ? 'button' : 'button-clear']" @click="onClick">
-    <span class="marginR">Options</span>
-    <i class="fa" :class="[showMenu ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
-  </button>
 
   <div v-if="showMenu">
-    <div class="card" style="width: 9rem;">
+    <div class="card marginT" :style="{'width':widthRem+'rem'}">
       <ul class="list-group list-group-flush">
 
         <li v-for="item in items" :key="item.id" @click="select(item.id)" @mouseover="onHover(item.id)" @mouseleave="hoverId=null" class="list-group-item" :class="{'selectedItem' : selectedId === item.id, 'hoverItem' : hoverId === item.id}">
@@ -16,7 +11,7 @@
       </ul>
     </div>
   </div>
-</div>
+
 </template>
 
 <script>
@@ -30,17 +25,25 @@ export default {
         { id: 2, icon: 'fa-link', string: 'Link', url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component" }
       ]
     },
-    background: {
+    showMenu: {
       type: Boolean,
-      default: true
+      default: 'false'
+    },
+    showMenu: {
+      type: Boolean,
+      default: 'false'
+    },
+    widthRem: {
+      type: Number,
+      default: 9
     }
 
   },
   data () {
     return {
-      showMenu: false,
       selectedId: null,
       hoverId: null,
+      widthRem: 12
     }
   },
 
@@ -65,23 +68,6 @@ export default {
 </script>
 
 <style>
-.button {
-  background-color: rgb(228, 236, 233);
-  border: 1px solid rgb(172, 172, 172);
-  border-radius: 5px;
-  padding: 4px 26px 4px 26px;
-  margin-bottom: 4px;
-}
-.button-clear {
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  padding: 4px 26px 4px 30px;
-  margin-bottom: 6px;
-}
-.marginR {
-  margin-right: 14px;
-}
 .iconWrap {
   width: 16.5px;
   margin-right: 6px;
@@ -91,6 +77,9 @@ export default {
   cursor: pointer;
 }
 .selectedItem {
-  background-color: rgb(234, 245, 255)!important;
+  background-color: rgb(231, 243, 255)!important;
+}
+.marginT {
+  margin-top: 6px;
 }
 </style>
