@@ -59,4 +59,5 @@ export default {
 <style >
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css";
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css";
 </style>
