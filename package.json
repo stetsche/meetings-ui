@@ -10,15 +10,16 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build-storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006 -s ./static",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "npm run build-storybook",
+    "predeploy": "npm run build-storybook -s ./public",
     "deploy-storybook": "gh-pages -d storybook-static"
   },
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^5.0.0-beta3",
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.7",
     "vue": "^2.6.14"
   },
   "devDependencies": {
@@ -62,7 +63,6 @@
   "bugs": {
     "url": "https://github.com/stetsche/meetings-ui/issues"
   },
-  "homepage": "https://github.com/stetsche/meetings-ui#readme",
   "keywords": [],
   "license": "ISC",
   "readme": "ERROR: No README data found!",
