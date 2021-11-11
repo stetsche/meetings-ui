@@ -8,6 +8,14 @@ npm install
 ```
 npm run storybook
 ```
+## Run dev server
+```
+npm run serve
+```
+## Run json server
+```
+npm run json-server -w data/db.json
+```
 ### Add vue components at
 ```
 src/compnents
