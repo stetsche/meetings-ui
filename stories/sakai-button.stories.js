@@ -8,7 +8,12 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { SakaiButton },
   props: Object.keys(argTypes),
-  template: '<SakaiButton v-bind="$props"/>',
+  template: 
+    `<SakaiButton v-bind="$props">
+        <template #prepend>
+          <i class="fa fa-question marginR"></i>
+        </template>
+     </SakaiButton>`,
 });
 
 export const Primary = Template.bind({});

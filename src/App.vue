@@ -1,8 +1,48 @@
 <template>
   <div class="m-2 p-2">
+    <div class="d-flex 1 mb-1">
+      <i class="fa fa-video-camera icon-wrap"></i>
+      <h5>MEETINGS</h5>
+      <SakaiButton class="ms-auto" text="Help">
+        <template #prepend>
+          <i class="fa fa-question marginR"></i>
+        </template>
+      </SakaiButton>
+      <SakaiButton text="">
+        <template #prepend>
+          <i class="fa fa-arrows-alt"></i>
+        </template>
+      </SakaiButton>
+    </div>
+
+    <div class="d-flex 2 mb-5">
+      <SakaiButton text="Create New Meeting">
+        <template #prepend>
+          <i class="fa fa-plus marginR"></i>
+        </template>
+      </SakaiButton>
+      <SakaiInput class="ms-auto">
+        <template #prepend>
+          <i class="fa fa-search search-icon"></i>
+        </template>          
+      </SakaiInput>
+      <div @click="showMenu = !showMenu">
+        <SakaiDropdown :items="items" :widthRem="8.5">
+          <template #activation>
+            <SakaiButton class="ms-0" text="Options">
+              <template #append>
+                <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </template>
+            </SakaiButton>
+          </template>
+        </SakaiDropdown>
+      </div>
+    </div>
+
         <h4 class="accordion-header" id="flush-headingOne">
             Happening Today
-        </h4><hr class="mb-0"/>
+        </h4>
+        <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
             <div class="row row-cols-md-3 row-cols-xl-4">
@@ -25,7 +65,8 @@
         </div>
         <h4 class="accordion-header" id="flush-headingTwo">
             Future
-        </h4><hr class="mb-0"/>
+        </h4>
+        <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
             <div class="row row-cols-md-3 row-cols-xl-4">
@@ -46,9 +87,25 @@
             </div>
           </div>
         </div>
-        <h4 class="accordion-header" id="flush-headingThree">
-            Past
-        </h4><hr class="mb-0"/>
+        <div class="d-flex align-items-end">
+          <div>
+            <h4 class="accordion-header" id="flush-headingThree">Past</h4>
+          </div>
+          <div class="ms-auto">
+            <div @click="showMenu = !showMenu" class="ms-auto">
+              <SakaiDropdown :items="showAll" :widthRem="8.5">
+                <template #activation>
+                  <SakaiButton class="ms-0" text="Show All" :clear="true">
+                    <template #append>
+                      <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </template>
+                  </SakaiButton>
+                </template>
+              </SakaiDropdown>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
             <div class="row row-cols-md-3 row-cols-xl-4">
@@ -75,12 +132,18 @@
 import dayjs from 'dayjs';
 import SakaiMeetingCard from "./components/sakai-meeting-card.vue";
 import { Collapse } from '../node_modules/bootstrap/dist/js/bootstrap.esm.min.js'
+import SakaiInput from "./components/sakai-input.vue";
+import SakaiButton from "./components/sakai-button.vue";
+import SakaiDropdown from "./components/sakai-dropdown.vue";
 
     Array.from(document.querySelectorAll('.accordion'))
       .forEach(accordionNode => new Collapse(accordionNode))
 export default {
   components: {
     SakaiMeetingCard,
+    SakaiInput,
+    SakaiButton,
+    SakaiDropdown,
   },
   data() {
     return {

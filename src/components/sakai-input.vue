@@ -1,26 +1,22 @@
 <template>
 <div>
-  <div class="wrapper">
-    <slot name="prepend">
-      <i class="fa fa-search search-icon"></i>
-    </slot>
-    <input type="search" class="bar-style" :class="[{'invalid-style' : invalid}, {'disabled-style' : $slots.prepend}]" v-model="value" @keyup.enter="search()" :placeholder="placeholder" >
-  </div> 
+  <div class="wrapper" :class="[{'disabled-style' : disabled}, {'invalid-style' : invalid}]">
+    <label for="input">
+      <slot name="prepend">
+        <!-- <i class="fa fa-search search-icon"></i> -->
+      </slot>
+    </label>
+    <input id="input" type="search" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
     <slot name="append">
-
+      <!-- <i class="fa fa-search search-icon"></i> -->
     </slot>
+  </div>
+
 </div>
 </template>
 
 <script>
 export default {
-    computed: {
-
-    filledSlot () {
-      return this.$slots['prepend']
-    }
-  },
-
   props: {
     disabled: {
       type: Boolean,
@@ -32,7 +28,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'search'
+      default: 'Search'
     }
   },
   data () {
@@ -41,31 +37,27 @@ export default {
     }
   },
 
-  methods: {
-
-    search() {
-      for (let x = 0; x < this.items.length; x++){
-        if (this.items[x].string === this.value){
-          return console.log("Found!");
-        } else {
-          return console.log("not found");
-        }
-      }
-    },
-
-  },
-
+  mounted() {
+    console.log(this.$slots);
+  }
 
 }
 </script>
 
 <style>
-.bar-style {
-  border-radius: 0.3em;
-  border: 2px solid rgb(212, 212, 212);
-  padding: 2px 23px 2px 30px;
-  margin-bottom: 4px;
-  outline: 0;
+.wrapper{
+  background-color: rgb(253, 253, 253);
+  border: 1px solid silver;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-parent;
+  margin-right: 5px;
+}
+.sakai-input{
+  border: 0;
+  background: transparent;
+  outline: none;  
+  padding: 0px 5px;
 }
 .wrapper {
   position: relative;
@@ -73,17 +65,16 @@ export default {
   min-width: 100px;
 }
 .search-icon {
-  position: absolute;
   top: 6px;
   left: 8px;
-  width: 14px;
+  padding: 4px 8px 4px 8px;
 }
 .invalid-style {
-  outline: solid rgb(215 96 96);
-  color: green;
+  outline: 1px solid rgb(255, 120, 96);
+  color: rgb(228, 155, 155);
 }
 .disabled-style {
-  outline: solid gainsboro;
-  color: red;
+  outline: 1px solid rgb(204, 204, 204);
+  color: rgb(240, 240, 240);
 }
 </style>

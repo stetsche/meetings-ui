@@ -1,21 +1,35 @@
 <template>
+  <div @click="onClick">
+    <slot name="activation" >
+                <!-- <SakaiButton  class="ms-0" :showMenu="showMenu">
+                  <template #prepend>
+                    <i class="fa fa-lock marginR"></i>
+                  </template>
+                  <template #append>
+                    <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                  </template>
+                </SakaiButton> -->
+    </slot>
+    <div v-if="showMenu">
+      <div class="card position-absolute marginT" :style="{'width':widthRem+'rem'}">
+        <ul class="list-group list-group-flush">
 
-  <div v-if="showMenu">
-    <div class="card marginT" :style="{'width':widthRem+'rem'}">
-      <ul class="list-group list-group-flush">
-
-        <li v-for="item in items" :key="item.id" @click="select(item.id)" @mouseover="onHover(item.id)" @mouseleave="hoverId=null" class="list-group-item" :class="{'selectedItem' : selectedId === item.id, 'hoverItem' : hoverId === item.id}">
+        <li v-for="item in items" :key="item.id" @click="select(item.id)" class="list-group-item hoverItem" :class="{'selectedItem' : selectedId === item.id}">
           <i class="fa iconWrap" :class="item.icon"></i>{{item.string}}
         </li>
 
       </ul>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
+// import SakaiButton from "./sakai-button.vue";
 export default {
+  components: {
+    //  SakaiButton,
+  },
   props: {
     items: {
       type: Array,
@@ -24,14 +38,6 @@ export default {
         { id: 1, icon: 'fa-book', string: 'Templates', url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups" },
         { id: 2, icon: 'fa-link', string: 'Link', url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component" }
       ]
-    },
-    showMenu: {
-      type: Boolean,
-      default: 'false'
-    },
-    showMenu: {
-      type: Boolean,
-      default: 'false'
     },
     widthRem: {
       type: Number,
@@ -43,24 +49,22 @@ export default {
     return {
       selectedId: null,
       hoverId: null,
-      widthRem: 12
+      showMenu: false
     }
   },
 
   methods: {
-
-    onClick() {
-      this.showMenu = !this.showMenu;
-      this.selectedId = null;
-    },
-
-    onHover(itemId) {
-      this.hoverId = itemId;
+    prueba(){
+      console.log('asdasdasda 1111');
     },
 
     select(itemId) {
       this.selectedId = itemId;      
       window.location.href = this.items[itemId].url;
+    },
+     onClick() {
+      this.showMenu = !this.showMenu;
+      console.log(this.showMenu);
     }
 
   }
@@ -72,7 +76,7 @@ export default {
   width: 16.5px;
   margin-right: 6px;
 }
-.hoverItem {
+.hoverItem:hover {
   background-color: rgb(243, 248, 253)!important;
   cursor: pointer;
 }
@@ -81,5 +85,11 @@ export default {
 }
 .marginT {
   margin-top: 6px;
+}
+.list-group-item {
+  padding: 0.5rem 0.8rem !important;
+}
+.list-group {
+  z-index: 1;
 }
 </style>
