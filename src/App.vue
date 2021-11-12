@@ -1,6 +1,7 @@
 <template>
   <div class="m-2 p-2">
-    <div class="d-flex 1 mb-1">
+    
+    <div class="d-flex 1 mb-1 div-heigth">
       <i class="fa fa-video-camera icon-wrap"></i>
       <h5>MEETINGS</h5>
       <SakaiButton class="ms-auto" text="Help">
@@ -15,7 +16,7 @@
       </SakaiButton>
     </div>
 
-    <div class="d-flex 2 mb-5">
+    <div class="d-flex 2 mb-5 div-heigth">
       <SakaiButton text="Create New Meeting">
         <template #prepend>
           <i class="fa fa-plus marginR"></i>
@@ -29,7 +30,7 @@
       <div @click="showMenu = !showMenu">
         <SakaiDropdown :items="items" :widthRem="8.5">
           <template #activation>
-            <SakaiButton class="ms-0" text="Options">
+            <SakaiButton class="ms-0" text="Options" style="width:116px;">
               <template #append>
                 <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
               </template>
@@ -39,9 +40,9 @@
       </div>
     </div>
 
-        <h4 class="accordion-header" id="flush-headingOne">
+        <h5 class="accordion-header" id="flush-headingOne">
             Happening Today
-        </h4>
+        </h5>
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
@@ -63,9 +64,9 @@
             </div>
           </div>
         </div>
-        <h4 class="accordion-header" id="flush-headingTwo">
+        <h5 class="accordion-header" id="flush-headingTwo">
             Future
-        </h4>
+        </h5>
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
@@ -89,7 +90,7 @@
         </div>
         <div class="d-flex align-items-end">
           <div>
-            <h4 class="accordion-header" id="flush-headingThree">Past</h4>
+            <h5 class="accordion-header" id="flush-headingThree">Past</h5>
           </div>
           <div class="ms-auto">
             <div @click="showMenu = !showMenu" class="ms-auto">
@@ -147,8 +148,26 @@ export default {
   },
   data() {
     return {
-     meetingsList: []
+     meetingsList: [],
+     showMenu: false
     };
+  },
+  props: {
+    items: {
+      type: Array,
+      default: () => [
+        { id: 0, icon: 'fa-lock', string: 'Permissions', url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate" },
+        { id: 1, icon: 'fa-book', string: 'Templates', url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups" },
+        { id: 2, icon: 'fa-link', string: 'Link', url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component" }
+      ]
+    },
+    showAll: {
+      type: Array,
+      default: () => [
+        { id: 0, icon: 'fa-th-large', string: 'All', url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate" },
+        { id: 1, icon: 'fa-play-circle', string: 'Recordings', url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups" }
+      ]
+    }
   },
   methods: {
     loadMeetingsList: async function () {
@@ -196,4 +215,10 @@ export default {
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css";
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css";
+.icon-wrap {
+  margin: 4px 4px 0px 0px;
+}
+.div-heigth {
+  line-height: 1.4rem;
+}
 </style>

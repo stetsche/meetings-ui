@@ -50,14 +50,14 @@ export default {
   border: 1px solid silver;
   border-radius: 5px;
   width: fit-content;
-  height: fit-parent;
+  height: 100%;
   margin-right: 5px;
 }
 .sakai-input{
   border: 0;
   background: transparent;
   outline: none;  
-  padding: 0px 5px;
+  padding: 0px 8px;
 }
 .wrapper {
   position: relative;
@@ -65,9 +65,8 @@ export default {
   min-width: 100px;
 }
 .search-icon {
-  top: 6px;
-  left: 8px;
-  padding: 4px 8px 4px 8px;
+  padding: 0 0 0 8px;
+  vertical-align: middle;
 }
 .invalid-style {
   outline: 1px solid rgb(255, 120, 96);
