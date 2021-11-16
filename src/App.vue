@@ -1,7 +1,6 @@
 <template>
   <div class="m-2 p-2">
-    
-    <div class="d-flex 1 mb-1 div-heigth">
+    <div class="d-flex 1 mb-2 gap-2 div-heigth">
       <i class="fa fa-video-camera icon-wrap"></i>
       <h5>MEETINGS</h5>
       <SakaiButton class="ms-auto" text="Help">
@@ -9,28 +8,29 @@
           <i class="fa fa-question marginR"></i>
         </template>
       </SakaiButton>
-      <SakaiButton text="">
+      <SakaiButton text="" class="">
         <template #prepend>
           <i class="fa fa-arrows-alt"></i>
         </template>
       </SakaiButton>
     </div>
 
-    <div class="d-flex 2 mb-5 div-heigth">
-      <SakaiButton text="Create New Meeting">
+    <div class="d-flex flex-wrap gap-2 mb-4 div-heigth">
+      <SakaiButton text="Create New Meeting" class="order-1">
         <template #prepend>
           <i class="fa fa-plus marginR"></i>
         </template>
       </SakaiButton>
-      <SakaiInput class="ms-auto">
+      <div class="order-2 flex-fill"></div>
+      <SakaiInput class="order-xs-0 order-sm-3 flex-fill div-height" style="max-width:25rem">
         <template #prepend>
           <i class="fa fa-search search-icon"></i>
         </template>          
       </SakaiInput>
-      <div @click="showMenu = !showMenu">
+      <div @click="showMenu = !showMenu" class="order-4">
         <SakaiDropdown :items="items" :widthRem="8.5">
           <template #activation>
-            <SakaiButton class="ms-0" text="Options" style="width:116px;">
+            <SakaiButton class="ms-0" text="Options">
               <template #append>
                 <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
               </template>
@@ -70,7 +70,7 @@
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-md-3 row-cols-xl-4">
+            <div class="row row-cols-xs-1 row-cols-md-3 row-cols-xl-4">
                 <template v-for="meeting in inFuture">
                   <div class="col pt-4" :key="meeting.id">
                     <sakai-meeting-card 
@@ -109,7 +109,7 @@
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-md-3 row-cols-xl-4">
+            <div class="row row-cols-xs-1 row-cols-md-3 row-cols-xl-4">
                 <template v-for="meeting in inPast">
                   <div class="col pt-4" :key="meeting.id">
                     <sakai-meeting-card 
@@ -177,32 +177,20 @@ export default {
     }
   },
   computed: {
-    day: function () {
-      return dayjs();
-    },
-    startDate: function () {
-      return this.day.hour(16).toISOString();
-    },
-    endDate: function () {
-      return dayjs('2021-12-24T16:30:00+01:00').toISOString();
-    },
     happeningToday: function() {
-      let ht = this.meetingsList.filter(meeting => {
-        return dayjs().isSame(dayjs(meeting.startDate), 'day');
-      });
-      return ht;
+      return this.meetingsList.filter(meeting => 
+        dayjs().isSame(dayjs(meeting.startDate), 'day') || meeting.live
+      );
     },
     inPast: function() {
-      let ht = this.meetingsList.filter(meeting => {
-        return dayjs().isAfter(dayjs(meeting.startDate), 'day');
-      });
-      return ht;
+      return this.meetingsList.filter(meeting => 
+        dayjs().isAfter(dayjs(meeting.startDate), 'day') && !meeting.live
+      );
     },
     inFuture: function() {
-      let ht = this.meetingsList.filter(meeting => {
-        return dayjs().isBefore(dayjs(meeting.startDate), 'day');
-      });
-      return ht;
+      return this.meetingsList.filter(meeting => 
+        dayjs().isBefore(dayjs(meeting.startDate), 'day') && !meeting.live
+      );
     }
   },
   mounted: function () {

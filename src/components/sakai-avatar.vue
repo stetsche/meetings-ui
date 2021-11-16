@@ -10,7 +10,7 @@
     :alt="altText"
   />
   <div v-if="variant == 'placeholder'" :style="placeholderStyle">
-    <!-- This can be replaces with the icon component later -->
+    <!-- This can be replaced with the icon component later -->
     <span class="fa fa-file-image-o"></span>
   </div>
   <div v-if="variant == 'text'" :style="placeholderStyle">

@@ -49,15 +49,17 @@ export default {
   background-color: rgb(253, 253, 253);
   border: 1px solid silver;
   border-radius: 5px;
-  width: fit-content;
+  width: 100%;
   height: 100%;
-  margin-right: 5px;
+  /*margin-right: 5px;*/
+  padding: .375rem .75rem;
 }
 .sakai-input{
   border: 0;
   background: transparent;
   outline: none;  
   padding: 0px 8px;
+  width: 100%;
 }
 .wrapper {
   position: relative;

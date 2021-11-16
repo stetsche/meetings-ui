@@ -7,14 +7,14 @@
       <div>
         {{schedule}}
       </div>
-      <div v-if="currentStatus != status.over" class="mx-2">
+      <div v-if="currentStatus != status.over" class="mx-1">
         <span>|</span>
       </div>
       <div v-if="currentStatus != status.over" class="d-flex flex-row flex-nowrap">
         <div>
           <span>{{statusText}}</span>
         </div>
-        <div class="mx-2">
+        <div class="mx-1">
           <span class="statusIcon" :class="statusIcon"></span>
         </div>
       </div>
@@ -80,9 +80,11 @@ import Avatar from './sakai-avatar.vue';
 import dayjs from 'dayjs';
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
+//import locale_de from 'dayjs/locale/es';
+
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
-dayjs.locale('de');
+//dayjs.locale(locale_de);
 export default {
   components: {
     Avatar
@@ -113,7 +115,7 @@ export default {
         return dayjs(value).isValid();
       }
     },
-    participants: { type: Array },
+    participants: { type: Array, default: new Array() },
     actions: { type: Array }
   },
   methods: {
@@ -122,8 +124,29 @@ export default {
     schedule: function () {
       let start = dayjs(this.startDate);
       let end = dayjs(this.endDate);
-      let startText = start.format('ddd, HH:mm');
-      let endText = end.format('HH:mm');
+      let startTextFormat;
+      let endTextFormat;
+      if(dayjs().isSame(start, 'year')) { //starts this year
+        if(dayjs().isSame(start, 'week')) {//starts this week
+          if(dayjs().isSame(start, 'day')) {//starts today
+            startTextFormat = 'LT';
+          } else {//starts this week, not today
+            startTextFormat = 'ddd LT';
+          }
+        } else {//starts this year, not this week
+          startTextFormat = 'lll';
+        }
+      } else { //starts other year
+        startTextFormat = 'lll';
+      }
+
+      if(start.isSame(end, 'day')) {//meeting covers just one local day
+        endTextFormat = 'LT';
+      } else { //meeting covers more then one local day 
+        endTextFormat = dayjs().isSame(end, 'week') ? 'ddd LT' : 'lll';
+      }
+      let startText = start.format(startTextFormat);
+      let endText = end.format(endTextFormat);
       return startText + ' - ' + endText;
     },
     currentStatus: function () {
