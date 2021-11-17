@@ -51,7 +51,29 @@ export default {
   background-color: rgb(243, 248, 253)!important;
   cursor: pointer;
 }
-.selectedItem {
-  background-color: rgb(231, 243, 255)!important;
+ul {
+  box-shadow: 1px 2px 5px 1px #e0e0e0;
+}
+.dropdown-menu {
+  min-width: 0 !important;
+}
+.dropdown-item {
+    padding: 0.35rem 1rem !important;
+}
+@media (max-width: 600px) {
+  ul {
+    inset: auto auto -8px 0px !important;
+    transform: unset !important;    
+    position: fixed !important;
+    border-radius: 10px !important;
+    box-shadow: 3px 3px 5px 5px #e2e2e2;
+    width: 100%; 
+  }
+  .dropdown-menu {
+    padding: 0.5rem 0 1.2rem 0;
+  }
+  .dropdown-item {
+    padding: 0.8rem 1rem 0.8rem 30% !important;
+  }
 }
 </style>
