@@ -15,14 +15,14 @@
       </SakaiButton>
     </div>
 
-    <div class="d-flex flex-wrap gap-2 mb-4 div-heigth">
+    <div class="d-flex flex-comumn flex-sm-row flex-wrap gap-2 mb-4 div-heigth">
       <SakaiButton text="Create New Meeting" class="order-1">
         <template #prepend>
           <i class="fa fa-plus marginR"></i>
         </template>
       </SakaiButton>
       <div class="order-2 flex-fill"></div>
-      <SakaiInput class="order-xs-0 order-sm-3 flex-fill div-height" style="max-width:25rem">
+      <SakaiInput class="order-xs-0 order-sm-3 flex-fill div-height" style="max-width:570px;min-width:340px">
         <template #prepend>
           <i class="fa fa-search search-icon"></i>
         </template>          
@@ -40,27 +40,33 @@
       </div>
     </div>
 
+
         <h5 class="accordion-header" id="flush-headingOne">
             Happening Today
         </h5>
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-md-3 row-cols-xl-4">
-                <template v-for="meeting in happeningToday">
-                  <div class="col pt-4" :key="meeting.id">
-                    <sakai-meeting-card 
-                      :title="meeting.title"
-                      :contextTitle="meeting.contextTitle"
-                      :participants="meeting.participants"
-                      :actions="meeting.actions"
-                      :live="meeting.live"
-                      :startDate="meeting.startDate"
-                      :endDate="meeting.endDate"
-                    >
-                    </sakai-meeting-card>
-                  </div>
-                </template>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-content-stretch">
+              <div class="col pt-4" v-for="meeting in happeningToday" :key="meeting.id">
+                <sakai-meeting-card 
+                  class="h-100" 
+                  :placement="isMobile ? 'left' : 'right'"
+                  :title="meeting.title"
+                  :contextTitle="meeting.contextTitle"
+                  :participants="meeting.participants"
+                  :actions="meeting.actions"
+                  :live="meeting.live"
+                  :startDate="meeting.startDate"
+                  :endDate="meeting.endDate"
+                >
+                  <template #actions>
+                    <div>
+                      <span class="bi bi-easel"></span>
+                    </div>
+                  </template>
+                </sakai-meeting-card>
+              </div>
             </div>
           </div>
         </div>
@@ -70,21 +76,20 @@
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-xs-1 row-cols-md-3 row-cols-xl-4">
-                <template v-for="meeting in inFuture">
-                  <div class="col pt-4" :key="meeting.id">
-                    <sakai-meeting-card 
-                      :title="meeting.title"
-                      :contextTitle="meeting.contextTitle"
-                      :participants="meeting.participants"
-                      :actions="meeting.actions"
-                      :live="meeting.live"
-                      :startDate="meeting.startDate"
-                      :endDate="meeting.endDate"
-                    >
-                    </sakai-meeting-card>
-                  </div>
-                </template>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
+              <div class="col pt-4" v-for="meeting in inFuture" :key="meeting.id">
+                <sakai-meeting-card 
+                  class="h-100" 
+                  :title="meeting.title"
+                  :contextTitle="meeting.contextTitle"
+                  :participants="meeting.participants"
+                  :actions="meeting.actions"
+                  :live="meeting.live"
+                  :startDate="meeting.startDate"
+                  :endDate="meeting.endDate"
+                >
+                </sakai-meeting-card>
+              </div>
             </div>
           </div>
         </div>
@@ -109,21 +114,20 @@
         <hr class="mb-0 mt-2"/>
         <div>
           <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-xs-1 row-cols-md-3 row-cols-xl-4">
-                <template v-for="meeting in inPast">
-                  <div class="col pt-4" :key="meeting.id">
-                    <sakai-meeting-card 
-                      :title="meeting.title"
-                      :contextTitle="meeting.contextTitle"
-                      :participants="meeting.participants"
-                      :actions="meeting.actions"
-                      :live="meeting.live"
-                      :startDate="meeting.startDate"
-                      :endDate="meeting.endDate"
-                    >
-                    </sakai-meeting-card>
-                  </div>
-                </template>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
+              <div class="col pt-4" v-for="meeting in inPast" :key="meeting.id">
+                <sakai-meeting-card 
+                  class="h-100" 
+                  :title="meeting.title"
+                  :contextTitle="meeting.contextTitle"
+                  :participants="meeting.participants"
+                  :actions="meeting.actions"
+                  :live="meeting.live"
+                  :startDate="meeting.startDate"
+                  :endDate="meeting.endDate"
+                >
+                </sakai-meeting-card>
+              </div>
             </div>
           </div>
         </div>
@@ -132,13 +136,10 @@
 <script>
 import dayjs from 'dayjs';
 import SakaiMeetingCard from "./components/sakai-meeting-card.vue";
-import { Collapse } from '../node_modules/bootstrap/dist/js/bootstrap.esm.min.js'
 import SakaiInput from "./components/sakai-input.vue";
 import SakaiButton from "./components/sakai-button.vue";
 import SakaiDropdown from "./components/sakai-dropdown.vue";
 
-    Array.from(document.querySelectorAll('.accordion'))
-      .forEach(accordionNode => new Collapse(accordionNode))
 export default {
   components: {
     SakaiMeetingCard,
@@ -171,7 +172,7 @@ export default {
   },
   methods: {
     loadMeetingsList: async function () {
-      const response = await fetch('http://127.0.0.1:3000/meetingList');
+      const response = await fetch('http://127.0.0.1:3001/meetingList');
       const list = await response.json();
       this.meetingsList = list;
     }
@@ -189,7 +190,7 @@ export default {
     },
     inFuture: function() {
       return this.meetingsList.filter(meeting => 
-        dayjs().isBefore(dayjs(meeting.startDate), 'day') && !meeting.live
+        dayjs().isBefore(dayjs(meeting.startDate), 'day') || meeting.live
       );
     }
   },

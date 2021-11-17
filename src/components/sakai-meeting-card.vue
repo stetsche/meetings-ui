@@ -1,8 +1,8 @@
 <template>
 <div class="card" aria-describedby="title">
-  <div class="card-header">
-    <div class="mt-1 mb-2 uppercase">{{contextTitle}}</div>
-    <h2 id="title" class="card-title">{{title}}</h2>
+  <div class="card-header h-100">
+    <div class="mt-1 mb-2 contextTitle">{{contextTitle}}</div>
+    <h2 id="title" class="card-title" :title="title">{{title}}</h2>
     <div class="d-flex flex-row flex-wrap mb-2">
       <div>
         {{schedule}}
@@ -27,26 +27,28 @@
     </div>
   </div>
   <div class="card-body p-0 d-flex">
-    <div class="action-list d-flex me-auto">
+    <div class="action-list d-flex">
       <template v-for="action in actions">
-        <div class="action-list-item" :key="action.icon">
+        <!--TODO Replace this with sakai-button-->
+        <div :key="action.icon">
           <span :class="action.icon"></span>
         </div>
       </template>
       <slot name="actions">
       </slot>
     </div>
-    <div class="p-1">
+    <div class="ms-auto p-1">
       <slot name="right">
-        <button v-if="currentStatus != status.over" :disabled="!live" class="btn btn-primary">Join Meeting</button>
       </slot>
+      <!--TODO Replace this with sakai-button-->
+      <button v-if="currentStatus != status.over" :disabled="!live" class="btn btn-primary">Join Meeting</button>
     </div>
   </div>
 </div>
 </template>
 
 <style scoped>
-.action-list-item {
+.action-list div {
   border-right: 1px solid rgba(0,0,0,.125);
   display: flex;
   flex-direction: column;
@@ -70,7 +72,7 @@ h2 {
   color: #D0021B; /*like record button*/
 }
 
-.uppercase {
+.contextTitle {
   text-transform: uppercase;
 }
 </style>
@@ -80,11 +82,11 @@ import Avatar from './sakai-avatar.vue';
 import dayjs from 'dayjs';
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
-//import locale_de from 'dayjs/locale/es';
+//import locale_es from 'dayjs/locale/es';
 
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
-//dayjs.locale(locale_de);
+//dayjs.locale(locale_es);
 export default {
   components: {
     Avatar
@@ -116,9 +118,7 @@ export default {
       }
     },
     participants: { type: Array, default: new Array() },
-    actions: { type: Array }
-  },
-  methods: {
+    actions: { type: Array, default: new Array()}
   },
   computed: {
     schedule: function () {
@@ -175,6 +175,7 @@ export default {
       }
     },
     statusIcon: function () {
+      //TODO - Use sakai-icon
       switch (this.currentStatus) {
         case this.status.live:
           return 'bi bi-record-circle livered' 
