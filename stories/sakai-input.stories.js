@@ -10,7 +10,9 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   template: `<SakaiInput v-bind="$props">
               <template #prepend>
-                <i class="fa fa-search search-icon"></i>
+                <label for="input" class="search-icon">
+                  <i class="fa fa-search"></i>
+                </label>
               </template>          
             </SakaiInput>`,
 });

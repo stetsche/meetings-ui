@@ -1,18 +1,9 @@
 <template>
-<div>
-  <div class="wrapper" :class="[{'disabled-style' : disabled}, {'invalid-style' : invalid}]">
-    <label for="input">
-      <slot name="prepend">
-        <!-- <i class="fa fa-search search-icon"></i> -->
-      </slot>
-    </label>
-    <input id="input" type="search" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
-    <slot name="append">
-      <!-- <i class="fa fa-search search-icon"></i> -->
+  <div class="sakai-wrapper" :class="[{'sakai-disabled' : disabled}, {'sakai-invalid' : invalid}]">    
+    <slot name="prepend">
     </slot>
+    <input id="input" :type="type" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
   </div>
-
-</div>
 </template>
 
 <script>
@@ -28,53 +19,48 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'Search'
+      default: ''
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   },
   data () {
     return {
       value: null
     }
-  },
-
-  mounted() {
-    console.log(this.$slots);
   }
-
 }
 </script>
 
 <style>
-.wrapper{
+.sakai-wrapper{
+  position: relative;
+  display: flex;
+  min-width: 100px;
   background-color: rgb(253, 253, 253);
-  border: 1px solid silver;
+  border: 1px solid #9e9e9e;
   border-radius: 5px;
-  width: 100%;
-  height: 100%;
-  /*margin-right: 5px;*/
-  padding: .375rem .75rem;
+  width: 22rem;
+  height: 2.25rem;
 }
 .sakai-input{
   border: 0;
   background: transparent;
   outline: none;  
-  padding: 0px 8px;
+  padding: .375rem .6rem;
   width: 100%;
-}
-.wrapper {
-  position: relative;
-  display: flex;
-  min-width: 100px;
 }
 .search-icon {
   padding: 0 0 0 8px;
-  vertical-align: middle;
+  align-self: center;
 }
-.invalid-style {
+.sakai-invalid {
   outline: 1px solid rgb(255, 120, 96);
   color: rgb(228, 155, 155);
 }
-.disabled-style {
+.sakai-disabled {
   outline: 1px solid rgb(204, 204, 204);
   color: rgb(240, 240, 240);
 }
