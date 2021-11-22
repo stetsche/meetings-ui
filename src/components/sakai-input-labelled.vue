@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="mb-4">
     <div>
         <label class="sakai-label" for="input">{{title}}</label>
     </div>
-    <textarea v-if="textarea" class="sakai-area" rows="10" cols="50"></textarea>
+    <textarea v-if="textarea" class="sakai-area" rows="10" cols="85"></textarea>
     <SakaiInput :type="inputType" v-else />
   </div>
 </template>
@@ -38,9 +38,10 @@ export default {
     border: 1px solid #9e9e9e;
     padding: 5px;
     outline: none;
+    margin-bottom: 1rem;
 }
 .sakai-label {
     margin-bottom: 4px;
-    font-size: 1.1rem;
+    font-size: 1.1rem;    
 }
 </style>

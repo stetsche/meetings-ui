@@ -1,8 +1,8 @@
 <template>
   <button type="button" @click="onClick" class="btn" :class="{clear,circle,disabled}">
-    <slot name="prepend" />
+    <slot name="prepend"/>
     <span v-if="text.length > 0">{{text}}</span>
-    <slot name="append" />
+    <slot name="append"/>
   </button>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   props: {
     text:{
       type: String,
-    default: 'Button'
+      default: 'Button'
     },
     clear: {
       type: Boolean,
@@ -48,8 +48,6 @@ export default {
   background-color: rgb(228, 236, 233) !important;
   border: 1px solid rgb(172, 172, 172) !important;
   padding: 0.3rem 0.7rem !important;
-  /*margin-right: 5px;
-  line-height: inherit !important;*/
   height: 100%;
 }
 .btn:hover {
@@ -72,12 +70,6 @@ export default {
   background-color: rgb(247, 247, 247) !important;  
   border: 1px solid rgb(228, 228, 228) !important;
   color: rgb(163, 163, 163);
-}
-.marginR {
-  margin-right: 6px;
-}
-.marginL {
-  margin-left: 6px;
 }
 .hover {
   background-color: rgb(243, 248, 253)!important;

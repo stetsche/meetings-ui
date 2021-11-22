@@ -1,11 +1,12 @@
 <template>
+<div id="wrapper">
   <div class="m-2 p-2">
-    <div class="d-flex 1 mb-2 gap-2 div-heigth">
+    <div class="d-flex 1 mb-2 gap-1 div-heigth">
       <i class="fa fa-video-camera icon-wrap"></i>
       <h5>MEETINGS</h5>
       <SakaiButton class="ms-auto" text="Help">
         <template #prepend>
-          <i class="fa fa-question marginR"></i>
+          <i class="fa fa-question me-2"></i>
         </template>
       </SakaiButton>
       <SakaiButton text="" class="">
@@ -18,7 +19,7 @@
     <div class="d-flex flex-comumn flex-sm-row flex-wrap gap-2 mb-4 div-heigth">
       <SakaiButton text="Create New Meeting" class="order-1">
         <template #prepend>
-          <i class="fa fa-plus marginR"></i>
+          <i class="fa fa-plus me-2"></i>
         </template>
       </SakaiButton>
       <div class="order-2 flex-fill"></div>
@@ -27,12 +28,12 @@
           <i class="fa fa-search search-icon"></i>
         </template>          
       </SakaiInput>
-      <div @click="showMenu = !showMenu" class="order-4">
-        <SakaiDropdown :items="items" :widthRem="8.5">
+      <div @click="btnPress1 = !btnPress1" class="order-4">
+        <SakaiDropdown :items="items">
           <template #activation>
-            <SakaiButton class="ms-0" text="Options">
+            <SakaiButton text="Options">
               <template #append>
-                <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                <i class="fa ms-2" :class="btnPress1 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
               </template>
             </SakaiButton>
           </template>
@@ -40,97 +41,97 @@
       </div>
     </div>
 
-
-        <h5 class="accordion-header" id="flush-headingOne">
-            Happening Today
-        </h5>
-        <hr class="mb-0 mt-2"/>
-        <div>
-          <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-content-stretch">
-              <div class="col pt-4" v-for="meeting in happeningToday" :key="meeting.id">
-                <sakai-meeting-card 
-                  class="h-100" 
-                  :placement="isMobile ? 'left' : 'right'"
-                  :title="meeting.title"
-                  :contextTitle="meeting.contextTitle"
-                  :participants="meeting.participants"
-                  :actions="meeting.actions"
-                  :live="meeting.live"
-                  :startDate="meeting.startDate"
-                  :endDate="meeting.endDate"
-                >
-                  <template #actions>
-                    <div>
-                      <span class="bi bi-easel"></span>
-                    </div>
-                  </template>
-                </sakai-meeting-card>
-              </div>
-            </div>
+    <h5 class="accordion-header" id="flush-headingOne">
+        Happening Today
+    </h5>
+    <hr class="mb-0 mt-2"/>
+    <div>
+      <div class="accordion-body p-0 pb-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 align-content-stretch">
+          <div class="col pt-4" v-for="meeting in happeningToday" :key="meeting.id">
+            <sakai-meeting-card 
+              class="h-100"
+              :placement="isMobile ? 'left' : 'right'"
+              :title="meeting.title"
+              :contextTitle="meeting.contextTitle"
+              :participants="meeting.participants"
+              :actions="meeting.actions"
+              :live="meeting.live"
+              :startDate="meeting.startDate"
+              :endDate="meeting.endDate"
+            >
+              <template #actions>
+                <div>
+                  <span class="bi bi-easel"></span>
+                </div>
+              </template>
+            </sakai-meeting-card>
           </div>
         </div>
-        <h5 class="accordion-header" id="flush-headingTwo">
-            Future
-        </h5>
-        <hr class="mb-0 mt-2"/>
-        <div>
-          <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
-              <div class="col pt-4" v-for="meeting in inFuture" :key="meeting.id">
-                <sakai-meeting-card 
-                  class="h-100" 
-                  :title="meeting.title"
-                  :contextTitle="meeting.contextTitle"
-                  :participants="meeting.participants"
-                  :actions="meeting.actions"
-                  :live="meeting.live"
-                  :startDate="meeting.startDate"
-                  :endDate="meeting.endDate"
-                >
-                </sakai-meeting-card>
-              </div>
-            </div>
+      </div>
+    </div>
+    <h5 class="accordion-header" id="flush-headingTwo">
+        Future
+    </h5>
+    <hr class="mb-0 mt-2"/>
+    <div>
+      <div class="accordion-body p-0 pb-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
+          <div class="col pt-4" v-for="meeting in inFuture" :key="meeting.id">
+            <sakai-meeting-card 
+              class="h-100" 
+              :title="meeting.title"
+              :contextTitle="meeting.contextTitle"
+              :participants="meeting.participants"
+              :actions="meeting.actions"
+              :live="meeting.live"
+              :startDate="meeting.startDate"
+              :endDate="meeting.endDate"
+            >
+            </sakai-meeting-card>
           </div>
         </div>
-        <div class="d-flex align-items-end">
-          <div>
-            <h5 class="accordion-header" id="flush-headingThree">Past</h5>
-          </div>
-          <div class="ms-auto">
-            <div @click="showMenu = !showMenu" class="ms-auto">
-              <SakaiDropdown :items="showAll" :widthRem="8.5">
-                <template #activation>
-                  <SakaiButton class="ms-0" text="Show All" :clear="true">
-                    <template #append>
-                      <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-                    </template>
-                  </SakaiButton>
+      </div>
+    </div>
+    <div class="d-flex align-items-end">
+      <div>
+        <h5 class="accordion-header" id="flush-headingThree">Past</h5>
+      </div>
+      <div class="ms-auto">
+        <div @click="btnPress2 = !btnPress2" class="ms-auto">
+          <SakaiDropdown :items="showAll">
+            <template #activation>
+              <SakaiButton text="Show All" :clear="true">
+                <template #append>
+                  <i class="fa ms-2" :class="btnPress2 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
                 </template>
-              </SakaiDropdown>
-            </div>
+              </SakaiButton>
+            </template>
+          </SakaiDropdown>
+        </div>
+      </div>
+    </div>
+    <hr class="mb-0 mt-2"/>
+    <div>
+      <div class="accordion-body p-0 pb-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
+          <div class="col pt-4" v-for="meeting in inPast" :key="meeting.id">
+            <sakai-meeting-card 
+              class="h-100" 
+              :title="meeting.title"
+              :contextTitle="meeting.contextTitle"
+              :participants="meeting.participants"
+              :actions="meeting.actions"
+              :live="meeting.live"
+              :startDate="meeting.startDate"
+              :endDate="meeting.endDate"
+            >
+            </sakai-meeting-card>
           </div>
         </div>
-        <hr class="mb-0 mt-2"/>
-        <div>
-          <div class="accordion-body p-0 pb-4">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
-              <div class="col pt-4" v-for="meeting in inPast" :key="meeting.id">
-                <sakai-meeting-card 
-                  class="h-100" 
-                  :title="meeting.title"
-                  :contextTitle="meeting.contextTitle"
-                  :participants="meeting.participants"
-                  :actions="meeting.actions"
-                  :live="meeting.live"
-                  :startDate="meeting.startDate"
-                  :endDate="meeting.endDate"
-                >
-                </sakai-meeting-card>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 <script>
@@ -150,7 +151,8 @@ export default {
   data() {
     return {
      meetingsList: [],
-     showMenu: false
+     btnPress1: false,
+     btnPress2: false
     };
   },
   props: {
@@ -172,9 +174,14 @@ export default {
   },
   methods: {
     loadMeetingsList: async function () {
-      const response = await fetch('http://127.0.0.1:3001/meetingList');
+      const response = await fetch('http://192.168.0.84:3001/meetingList');
       const list = await response.json();
       this.meetingsList = list;
+    },
+    clearBackground() {
+      if (document.getElementById('wrapper').classList.contains('overflow')){
+        document.getElementById('wrapper').classList.remove('overflow');
+      }
     }
   },
   computed: {
@@ -209,5 +216,9 @@ export default {
 }
 .div-heigth {
   line-height: 1.4rem;
+}
+.overflow {
+  overflow: hidden;
+  position: fixed;
 }
 </style>
