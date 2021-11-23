@@ -10,15 +10,17 @@ const Template = (args, { argTypes }) => ({
   components: { SakaiDropdown, SakaiButton },
   props: Object.keys(argTypes),
   template:
-     `<SakaiDropdown v-bind="$props" :items="items" :widthRem="8.5">
-        <template #activation>
-          <SakaiButton text="Options">
-            <template #append>
-              <i class="fa marginL" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </template>
-          </SakaiButton>
-        </template>
-      </SakaiDropdown>`,
+      `<div @click="showMenu = !showMenu">
+        <SakaiDropdown v-bind="$props">
+          <template #activation>
+            <SakaiButton text="Options">
+              <template #append>
+                <i class="fa" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </template>
+            </SakaiButton>
+          </template>
+        </SakaiDropdown>
+      </div>`,
 });
 
 export const Primary = Template.bind({});

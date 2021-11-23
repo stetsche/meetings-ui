@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <div data-bs-toggle="dropdown">
-      <slot name="activation" >
+      <slot name="activation">
       </slot>
     </div>
     <ul class="dropdown-menu">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import '/node_modules/bootstrap/js/dist/dropdown.js'
 export default {
   components: {
   },
@@ -33,11 +34,18 @@ export default {
     }
   },
 
-  methods: {select(itemId) {
+  methods: {
+    select(itemId) {
       this.selectedId = itemId;      
       window.location.href = this.items[itemId].url;
-    }
-
+    },
+/*    dimBackground() {
+      if (!document.getElementById('wrapper').classList.contains('overflow')){
+        document.getElementById('wrapper').classList.add('overflow');        
+      } else {
+        document.getElementById('wrapper').classList.remove('overflow');
+      }
+    }*/
   }
 }
 </script>
@@ -66,14 +74,18 @@ ul {
     transform: unset !important;    
     position: fixed !important;
     border-radius: 10px !important;
-    box-shadow: 3px 3px 5px 5px #e2e2e2;
+    box-shadow: 0 0 0 100vmax #9f9f9f42 !important;
     width: 100%; 
   }
   .dropdown-menu {
-    padding: 0.5rem 0 1.2rem 0;
+    padding: 0.6rem 2.5rem 0.8rem 2.5rem !important;
   }
   .dropdown-item {
-    padding: 0.8rem 1rem 0.8rem 30% !important;
+    padding: 1rem 1rem 1rem 30% !important;
+    border-bottom: 1px solid #e9e9e9 !important;
+  }
+  .dropdown-item:last-child {
+  border-bottom: none !important;
   }
 }
 </style>
