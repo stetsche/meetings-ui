@@ -1,46 +1,49 @@
 <template>
-  <button type="button" @click="onClick" class="btn" :class="{clear,circle,disabled}">
-    <slot name="prepend"/>
-    <span v-if="text.length > 0">{{text}}</span>
-    <slot name="append"/>
+  <button
+    type="button"
+    @click="onClick"
+    class="btn"
+    :class="{ clear, circle, disabled }"
+  >
+    <slot name="prepend" />
+    <span v-if="text.length > 0">{{ text }}</span>
+    <slot name="append" />
   </button>
 </template>
 
 <script>
 export default {
-  components: {
-  },
+  components: {},
   props: {
-    text:{
+    text: {
       type: String,
-      default: 'Button'
+      default: "Button",
     },
     clear: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     circle: {
       type: Boolean,
-      default: false
-    }
-
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
-      showMenu: true
-    }
+      showMenu: true,
+    };
   },
 
   methods: {
     onClick() {
       this.showMenu = !this.showMenu;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -67,12 +70,12 @@ export default {
   height: 40px;
 }
 .disable {
-  background-color: rgb(247, 247, 247) !important;  
+  background-color: rgb(247, 247, 247) !important;
   border: 1px solid rgb(228, 228, 228) !important;
   color: rgb(163, 163, 163);
 }
 .hover {
-  background-color: rgb(243, 248, 253)!important;
+  background-color: rgb(243, 248, 253) !important;
   cursor: pointer;
 }
 </style>
