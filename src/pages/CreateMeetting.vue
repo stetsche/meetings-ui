@@ -2,10 +2,20 @@
   <div class="p-4">
     <sakai-accordion>
       <sakai-accordion-item title="1. Meeting Information" open="true">
-        Some Meeting Information Settings
+        <SakaiInputLabelled title="Meetings Title"/>
+        <SakaiInputLabelled title="Description" textarea="true"/>
+        <div class="d-flex align-items-end">
+          <SakaiInputLabelled title="Preupload presentation" class="me-2"/>
+          <SakaiButton text="Add" class="mb-4"/>
+        </div>
+        <label class="mb-1" for="">Choose Web Conferencing Service</label>
+        <SakaiInput/>
       </sakai-accordion-item>
       <sakai-accordion-item title="2. Participants">
         Some Participants Settings
+        Some Participants Settings
+        Some Participants Settings
+
       </sakai-accordion-item>
       <sakai-accordion-item title="3. Availability">
         Some Availability Settings
@@ -33,10 +43,29 @@
 <script>
 import SakaiAccordionItem from "../components/sakai-accordion-item.vue";
 import SakaiAccordion from "../components/sakai-accordion.vue";
+import SakaiInputLabelled from "../components/sakai-input-labelled.vue";
+import SakaiButton from "../components/sakai-button.vue";
+import SakaiInput from "../components/sakai-input.vue";
+// import SakaiDropdown from "../components/sakai-dropdown.vue";
 export default {
   components: {
     SakaiAccordionItem,
     SakaiAccordion,
+    SakaiInputLabelled,
+    SakaiButton,
+    SakaiInput
+    //SakaiDropdown,
+    
   },
+  props: {
+    items: {
+      type: Array,
+      default: () => [
+        { string: 'Big Bule Button', url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate" },
+        { string: 'Microsoft Teams', url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups" },
+        { string: 'Zoom', url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component" }
+      ]
+    }
+  }
 };
 </script>

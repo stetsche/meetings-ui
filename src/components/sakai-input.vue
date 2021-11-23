@@ -1,14 +1,22 @@
 <template>
   <div class="sakai-wrapper" :class="[{'sakai-disabled' : disabled}, {'sakai-invalid' : invalid}]">    
-    <slot name="prepend">
-    </slot>
-    <input id="input" :type="type" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
+    <slot name="prepend"/>
+    <input id="input" :name="name" :type="type" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
+    <slot name="apend"/>
   </div>
 </template>
 
 <script>
 export default {
   props: {
+    type: {
+      type: String,
+      default: 'text'
+    },
+    name: {
+      type: String,
+      default: 'input'
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -21,10 +29,7 @@ export default {
       type: String,
       default: ''
     },
-    type: {
-      type: String,
-      default: 'text'
-    }
+    
   },
   data () {
     return {
@@ -49,7 +54,7 @@ export default {
   border: 0;
   background: transparent;
   outline: none;  
-  padding: .375rem .6rem;
+  padding: .375rem;
   width: 100%;
 }
 .search-icon {

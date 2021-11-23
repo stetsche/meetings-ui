@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <div>
-        <label class="sakai-label" for="input">{{title}}</label>
+        <label class="mb-1" for="input">{{title}}</label>
     </div>
     <textarea v-if="textarea" class="sakai-area" rows="10" cols="85"></textarea>
     <SakaiInput :type="inputType" v-else />
@@ -36,12 +36,7 @@ export default {
     resize: auto;
     border-radius: 5px;
     border: 1px solid #9e9e9e;
-    padding: 5px;
+    padding: .375rem;
     outline: none;
-    margin-bottom: 1rem;
-}
-.sakai-label {
-    margin-bottom: 4px;
-    font-size: 1.1rem;    
 }
 </style>

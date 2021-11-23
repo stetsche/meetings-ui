@@ -48,7 +48,7 @@ export default {
   background-color: rgb(228, 236, 233) !important;
   border: 1px solid rgb(172, 172, 172) !important;
   padding: 0.3rem 0.7rem !important;
-  height: 100%;
+  height: 2.25rem;
 }
 .btn:hover {
   background-color: rgb(218, 226, 233) !important;
