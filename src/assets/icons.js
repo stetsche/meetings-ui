@@ -8,6 +8,6 @@ export default {
   presentation: "bi bi-easel",
   play: "bi bi-play-circle",
   attachment: "bi bi-paperclip",
-  vidocamera: "fa fa-video-camera",
+  videocamera: "fa fa-video-camera",
   menu_kebab: "fa fa-ellipsis-v",
 };

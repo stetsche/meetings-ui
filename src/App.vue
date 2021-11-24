@@ -2,7 +2,7 @@
   <div id="wrapper">
     <div class="m-2 p-2">
       <div class="d-flex 1 mb-2 gap-1 div-heigth">
-        <i class="fa fa-video-camera icon-wrap"></i>
+        <sakai-icon iconkey="videocamera" />
         <h5>MEETINGS</h5>
         <SakaiButton class="ms-auto" text="Help">
           <template #prepend>
@@ -72,11 +72,6 @@
                 :startDate="meeting.startDate"
                 :endDate="meeting.endDate"
               >
-                <template #actions>
-                  <div>
-                    <span class="bi bi-easel"></span>
-                  </div>
-                </template>
               </sakai-meeting-card>
             </div>
           </div>
@@ -157,6 +152,7 @@ import SakaiMeetingCard from "./components/sakai-meeting-card.vue";
 import SakaiInput from "./components/sakai-input.vue";
 import SakaiButton from "./components/sakai-button.vue";
 import SakaiDropdown from "./components/sakai-dropdown.vue";
+import SakaiIcon from "./components/sakai-icon.vue";
 
 export default {
   components: {
@@ -164,6 +160,7 @@ export default {
     SakaiInput,
     SakaiButton,
     SakaiDropdown,
+    SakaiIcon,
   },
   data() {
     return {
@@ -216,7 +213,9 @@ export default {
   },
   methods: {
     loadMeetingsList: async function () {
-      const response = await fetch("http://192.168.0.84:3001/meetingList");
+      const response = await fetch(
+        "http://http://192.168.0.84:3001/meetingList"
+      );
       const list = await response.json();
       this.meetingsList = list;
     },
@@ -242,7 +241,7 @@ export default {
     inFuture: function () {
       return this.meetingsList.filter(
         (meeting) =>
-          dayjs().isBefore(dayjs(meeting.startDate), "day") || meeting.live
+          dayjs().isBefore(dayjs(meeting.startDate), "day") && !meeting.live
       );
     },
   },
@@ -253,8 +252,9 @@ export default {
 </script>
 <style>
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css";
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/sakai-colors.css";
 .icon-wrap {
   margin: 4px 4px 0px 0px;
 }
