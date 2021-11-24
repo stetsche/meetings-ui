@@ -1,8 +1,23 @@
 <template>
-  <div class="sakai-wrapper" :class="[{'sakai-disabled' : disabled}, {'sakai-invalid' : invalid}]">    
-    <slot name="prepend"/>
-    <input id="input" :name="name" :type="type" class="sakai-input" :disabled="disabled" v-model="value" :placeholder="placeholder">
-    <slot name="apend"/>
+  <div
+    :class="[
+      { 'sakai-wrapper': type != 'checkbox' },
+      { 'sakai-disabled': disabled },
+      { 'sakai-invalid': invalid },
+    ]"
+  >
+    <slot name="prepend" />
+    <input
+      id="input"
+      :name="name"
+      :type="type"
+      :class="{ 'sakai-input': type != 'checkbox' }"
+      :disabled="disabled"
+      v-model="value"
+      :placeholder="placeholder"
+      d
+    />
+    <slot name="apend" />
   </div>
 </template>
 
@@ -11,36 +26,35 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: "text",
     },
     name: {
       type: String,
-      default: 'input'
+      default: "input",
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     invalid: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: String,
-      default: ''
+      default: "",
     },
-    
   },
-  data () {
+  data() {
     return {
-      value: null
-    }
-  }
-}
+      value: null,
+    };
+  },
+};
 </script>
 
 <style>
-.sakai-wrapper{
+.sakai-wrapper {
   position: relative;
   display: flex;
   min-width: 100px;
@@ -50,11 +64,11 @@ export default {
   width: 22rem;
   height: 2.25rem;
 }
-.sakai-input{
+.sakai-input {
   border: 0;
   background: transparent;
-  outline: none;  
-  padding: .375rem;
+  outline: none;
+  padding: 0.375rem;
   width: 100%;
 }
 .search-icon {
