@@ -10,7 +10,9 @@
         :class="!open ? 'collapsed' : ''"
         :data-bs-target="'#item' + id"
       >
-        {{ title }}
+        <span>
+          {{ title }}
+        </span>
       </button>
     </h2>
     <div
@@ -26,6 +28,30 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.accordion-item {
+  border-color: var(--sakai-border-color);
+}
+.accordion-button {
+  background-color: var(--sakai-background-color-1);
+  color: var(--sakai-text-color);
+}
+.accordion-button:not(.collapsed) {
+  background-color: var(--sakai-background-color-2);
+  color: var(--sakai-link-color);
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: none;
+}
+.accordion-button.collapsed::after {
+  background-image: none;
+}
+.accordion-body {
+  border-color: red;
+  background-color: var(--sakai-background-color-1);
+}
+</style>
 
 <script>
 // eslint-disable-next-line

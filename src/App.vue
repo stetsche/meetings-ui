@@ -4,7 +4,10 @@
       <div class="d-flex 1 mb-2 gap-1 div-heigth">
         <sakai-icon iconkey="videocamera" />
         <h5>MEETINGS</h5>
-        <SakaiButton class="ms-auto" text="Help">
+        <button id="themeswitch" class="ms-auto" @click="switchtheme()" text="">
+          <i class="bi bi-moon-fill"></i>
+        </button>
+        <SakaiButton text="Help">
           <template #prepend>
             <i class="fa fa-question me-2"></i>
           </template>
@@ -154,6 +157,9 @@ import SakaiButton from "./components/sakai-button.vue";
 import SakaiDropdown from "./components/sakai-dropdown.vue";
 import SakaiIcon from "./components/sakai-icon.vue";
 
+// eslint-disable-next-line
+import toggletheme from "./assets/toggletheme.js";
+
 export default {
   components: {
     SakaiMeetingCard,
@@ -213,9 +219,7 @@ export default {
   },
   methods: {
     loadMeetingsList: async function () {
-      const response = await fetch(
-        "http://http://192.168.0.84:3001/meetingList"
-      );
+      const response = await fetch("http://127.0.0.1:3001/meetingList");
       const list = await response.json();
       this.meetingsList = list;
     },
@@ -223,6 +227,9 @@ export default {
       if (document.getElementById("wrapper").classList.contains("overflow")) {
         document.getElementById("wrapper").classList.remove("overflow");
       }
+    },
+    switchtheme: function () {
+      toggletheme();
     },
   },
   computed: {
@@ -255,6 +262,7 @@ export default {
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./assets/sakai-colors.css";
+@import "./assets/page.css";
 .icon-wrap {
   margin: 4px 4px 0px 0px;
 }

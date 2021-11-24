@@ -83,6 +83,20 @@
   font-size: 1.5rem;*/
 }
 </style>
+
+<style scoped>
+.card {
+  border-color: var(--sakai-border-color);
+}
+.card-header {
+  background-color: var(--sakai-background-color-2);
+}
+
+.card-body {
+  background-color: var(--sakai-background-color-1);
+}
+</style>
+
 <style scoped>
 .card-menu {
   position: absolute;
@@ -99,7 +113,8 @@ h2 {
 }
 
 .statusIcon.livered {
-  color: #d0021b; /*like record button*/
+  /*color: #d0021b; /*like record button*/
+  color: var(--sakai-record-color); /*like record button*/
 }
 
 .contextTitle {

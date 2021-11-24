@@ -1,0 +1,10 @@
+body {
+  background-color: var(--tool-background-color);
+  color: var(--sakai-text-color-1);
+}
+a {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--link-hover-color);
+}
