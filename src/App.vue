@@ -9,12 +9,12 @@
         </button>
         <SakaiButton text="Help">
           <template #prepend>
-            <i class="fa fa-question me-2"></i>
+            <sakai-icon class="me-1" iconkey="question"></sakai-icon>
           </template>
         </SakaiButton>
         <SakaiButton text="" class="">
           <template #prepend>
-            <i class="fa fa-arrows-alt"></i>
+            <sakai-icon iconkey="maximize"></sakai-icon>
           </template>
         </SakaiButton>
       </div>
@@ -24,7 +24,7 @@
       >
         <SakaiButton text="Create New Meeting" class="order-1">
           <template #prepend>
-            <i class="fa fa-plus me-2"></i>
+            <sakai-icon class="me-1" iconkey="plus"></sakai-icon>
           </template>
         </SakaiButton>
         <div class="order-2 flex-fill"></div>
@@ -33,7 +33,7 @@
           style="max-width: 570px; min-width: 340px"
         >
           <template #prepend>
-            <i class="fa fa-search search-icon"></i>
+            <sakai-icon class="search-icon" iconkey="search"></sakai-icon>
           </template>
         </SakaiInput>
         <div @click="btnPress1 = !btnPress1" class="order-4">
@@ -41,10 +41,10 @@
             <template #activation>
               <SakaiButton text="Options">
                 <template #append>
-                  <i
-                    class="fa ms-2"
-                    :class="btnPress1 ? 'fa-chevron-up' : 'fa-chevron-down'"
-                  ></i>
+                  <sakai-icon
+                    class="ms-1"
+                    :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
+                  ></sakai-icon>
                 </template>
               </SakaiButton>
             </template>
@@ -113,10 +113,10 @@
               <template #activation>
                 <SakaiButton text="Show All" :clear="true">
                   <template #append>
-                    <i
-                      class="fa ms-2"
-                      :class="btnPress2 ? 'fa-chevron-up' : 'fa-chevron-down'"
-                    ></i>
+                    <sakai-icon
+                      class="ms-1"
+                      :iconkey="btnPress2 ? 'chevron_up' : 'chevron_down'"
+                    ></sakai-icon>
                   </template>
                 </SakaiButton>
               </template>

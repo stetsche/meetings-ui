@@ -10,4 +10,10 @@ export default {
   attachment: "bi bi-paperclip",
   videocamera: "fa fa-video-camera",
   menu_kebab: "fa fa-ellipsis-v",
+  question: "fa fa-question",
+  maximize: "fa fa-arrows-alt",
+  plus: "fa fa-plus",
+  search: "fa fa-search",
+  chevron_up: "fa fa-chevron-up",
+  chevron_down: "fa fa-chevron-down",
 };

@@ -4,6 +4,12 @@
   </div>
 </template>
 
+<style scoped>
+.sakai-icon {
+  display: inline-block;
+}
+</style>
+
 <script>
 import icons from "../assets/icons.js";
 
