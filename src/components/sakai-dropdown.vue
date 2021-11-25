@@ -1,53 +1,70 @@
 <template>
   <div class="dropdown">
     <div data-bs-toggle="dropdown">
-      <slot name="activation">
-      </slot>
+      <slot name="activation"> </slot>
     </div>
     <ul class="dropdown-menu">
-      <li v-for="item in items" :key="item.id" @click="select(item.id)" class="dropdown-item" >
-        <i class="fa iconWrap" :class="item.icon"></i>{{item.string}}
+      <li
+        v-for="item in items"
+        :key="item.id"
+        @click="select(item.id)"
+        class="dropdown-item"
+      >
+        <i class="fa iconWrap" :class="item.icon"></i>{{ item.string }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import '/node_modules/bootstrap/js/dist/dropdown.js'
+import "/node_modules/bootstrap/js/dist/dropdown.js";
 export default {
-  components: {
-  },
+  components: {},
   props: {
     items: {
       type: Array,
       default: () => [
-        { id: 0, icon: 'fa-lock', string: 'Permissions', url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate" },
-        { id: 1, icon: 'fa-book', string: 'Templates', url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups" },
-        { id: 2, icon: 'fa-link', string: 'Link', url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component" }
-      ]
-    }
-
+        {
+          id: 0,
+          icon: "fa-lock",
+          string: "Permissions",
+          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+        },
+        {
+          id: 1,
+          icon: "fa-book",
+          string: "Templates",
+          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+        },
+        {
+          id: 2,
+          icon: "fa-link",
+          string: "Link",
+          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+        },
+      ],
+    },
   },
-  data () {
+  data() {
     return {
-      selectedId: null
-    }
+      selectedId: null,
+    };
   },
 
   methods: {
     select(itemId) {
-      this.selectedId = itemId;      
+      this.selectedId = itemId;
       window.location.href = this.items[itemId].url;
     },
-/*    dimBackground() {
+    /*    dimBackground() {
       if (!document.getElementById('wrapper').classList.contains('overflow')){
         document.getElementById('wrapper').classList.add('overflow');        
       } else {
         document.getElementById('wrapper').classList.remove('overflow');
       }
     }*/
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -55,8 +72,8 @@ export default {
   width: 16.5px;
   margin-right: 6px;
 }
-.hoverItem:hover {
-  background-color: rgb(243, 248, 253)!important;
+.dropdown-item:hover {
+  background-color: rgb(240, 245, 252) !important;
   cursor: pointer;
 }
 ul {
@@ -66,16 +83,16 @@ ul {
   min-width: 0 !important;
 }
 .dropdown-item {
-    padding: 0.35rem 1rem !important;
+  padding: 0.35rem 1rem !important;
 }
 @media (max-width: 600px) {
   ul {
     inset: auto auto -8px 0px !important;
-    transform: unset !important;    
+    transform: unset !important;
     position: fixed !important;
     border-radius: 10px !important;
     box-shadow: 0 0 0 100vmax #9f9f9f42 !important;
-    width: 100%; 
+    width: 100%;
   }
   .dropdown-menu {
     padding: 0.6rem 2.5rem 0.8rem 2.5rem !important;
@@ -85,7 +102,7 @@ ul {
     border-bottom: 1px solid #e9e9e9 !important;
   }
   .dropdown-item:last-child {
-  border-bottom: none !important;
+    border-bottom: none !important;
   }
 }
 </style>
