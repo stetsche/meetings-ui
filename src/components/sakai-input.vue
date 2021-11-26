@@ -15,7 +15,6 @@
       :disabled="disabled"
       v-model="value"
       :placeholder="placeholder"
-      d
     />
     <slot name="apend" />
   </div>
@@ -58,18 +57,23 @@ export default {
   position: relative;
   display: flex;
   min-width: 100px;
-  background-color: rgb(253, 253, 253);
-  border: 1px solid #9e9e9e;
+  background: var(--sakai-background-color-1);
+  border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
   width: 22rem;
   height: 2.25rem;
 }
 .sakai-input {
+  color: var(--sakai-text-color-1);
   border: 0;
   background: transparent;
   outline: none;
   padding: 0.375rem;
   width: 100%;
+}
+input[type="checkbox"] {
+  background-color: var(--sakai-background-color-1);
+  border: 1px solid var(--sakai-border-color);
 }
 .search-icon {
   padding: 0 0 0 8px;
