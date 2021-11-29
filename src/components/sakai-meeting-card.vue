@@ -1,16 +1,20 @@
 <template>
   <div class="card" aria-describedby="title">
     <div class="card-header h-100">
-      <sakai-dropdown class="card-menu">
+      <sakai-dropdown :items="menuitems" class="card-menu">
         <template #activation>
-          <sakai-button circle="true" clear="true" text="">
+          <sakai-button
+            :circle="true"
+            :clear="true"
+            :textHidden="true"
+            text="Options"
+          >
             <template #prepend>
               <sakai-icon iconkey="menu_kebab" />
             </template>
           </sakai-button>
         </template>
       </sakai-dropdown>
-
       <div class="mt-1 mb-2 contextTitle">{{ contextTitle }}</div>
       <h2 id="title" class="card-title" :title="title">{{ title }}</h2>
       <div class="d-flex flex-row flex-wrap mb-2">
@@ -47,9 +51,13 @@
     </div>
     <div class="card-body p-0 d-flex">
       <div class="action-list d-flex">
-        <!--TODO Replace this with sakai-button-->
         <div v-for="action in actions" :key="action.icon">
-          <sakai-button circle="true" clear="true" text="">
+          <sakai-button
+            :circle="true"
+            :clear="true"
+            :text="action.label"
+            :textHidden="true"
+          >
             <template #prepend>
               <sakai-icon :iconkey="action.icon" />
             </template>
@@ -64,8 +72,8 @@
           v-if="currentStatus != status.over"
           :disabled="!live"
           :primary="true"
+          text="Join Meeting"
         >
-          Join Meeting
         </sakai-button>
       </div>
     </div>
@@ -76,11 +84,6 @@
 .action-list > div {
   border-right: 1px solid rgba(0, 0, 0, 0.125);
   padding: 0.125rem;
-  /*display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.5rem;*/
 }
 </style>
 
@@ -169,6 +172,7 @@ export default {
         return dayjs(value).isValid();
       },
     },
+    menuitems: { type: Array, default: new Array() },
     participants: { type: Array, default: new Array() },
     actions: { type: Array, default: new Array() },
   },

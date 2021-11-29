@@ -73,7 +73,6 @@
             >
               <sakai-meeting-card
                 class="h-100"
-                :placement="isMobile ? 'left' : 'right'"
                 :title="meeting.title"
                 :contextTitle="meeting.contextTitle"
                 :participants="meeting.participants"
@@ -81,6 +80,7 @@
                 :live="meeting.live"
                 :startDate="meeting.startDate"
                 :endDate="meeting.endDate"
+                :menuitems="meeting.menuitems"
               >
               </sakai-meeting-card>
             </div>
@@ -104,6 +104,7 @@
                 :live="meeting.live"
                 :startDate="meeting.startDate"
                 :endDate="meeting.endDate"
+                :menuitems="meeting.menuitems"
               >
               </sakai-meeting-card>
             </div>
@@ -147,6 +148,7 @@
                 :live="meeting.live"
                 :startDate="meeting.startDate"
                 :endDate="meeting.endDate"
+                :menuitems="meeting.menuitems"
               >
               </sakai-meeting-card>
             </div>
@@ -188,19 +190,19 @@ export default {
       default: () => [
         {
           id: 0,
-          icon: "fa-lock",
+          icon: "permissions",
           string: "Permissions",
           url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
         },
         {
           id: 1,
-          icon: "fa-book",
+          icon: "template",
           string: "Templates",
           url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
         },
         {
           id: 2,
-          icon: "fa-link",
+          icon: "link",
           string: "Link",
           url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
         },
@@ -211,13 +213,13 @@ export default {
       default: () => [
         {
           id: 0,
-          icon: "fa-th-large",
+          icon: "all",
           string: "All",
           url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
         },
         {
           id: 1,
-          icon: "fa-play-circle",
+          icon: "play",
           string: "Recordings",
           url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
         },

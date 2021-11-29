@@ -19,13 +19,12 @@ export default {
       Type: String,
       default: "error",
       validator: function (value) {
-        return Object.entries(icons).indexOf(value) > -1;
+        return Object.prototype.hasOwnProperty.call(icons, value);
       },
     },
   },
   computed: {
     iconClass: function () {
-      console.log(icons["live"]);
       return icons[this.iconkey];
     },
   },

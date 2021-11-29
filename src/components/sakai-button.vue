@@ -56,6 +56,7 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/sakai-colors.css";
 .btn {
   background-color: var(--button-background);
   color: var(--button-text-color);

@@ -10,35 +10,39 @@
         @click="select(item.id)"
         class="dropdown-item"
       >
-        <i class="fa iconWrap" :class="item.icon"></i>{{ item.string }}
+        <sakai-icon :iconkey="item.icon" class="iconWrap" :class="item.icon" />
+        {{ item.string }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import SakaiIcon from "./sakai-icon.vue";
 import "/node_modules/bootstrap/js/dist/dropdown.js";
 export default {
-  components: {},
+  components: {
+    SakaiIcon,
+  },
   props: {
     items: {
       type: Array,
       default: () => [
         {
           id: 0,
-          icon: "fa-lock",
+          icon: "permissions",
           string: "Permissions",
           url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
         },
         {
           id: 1,
-          icon: "fa-book",
+          icon: "template",
           string: "Templates",
           url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
         },
         {
           id: 2,
-          icon: "fa-link",
+          icon: "link",
           string: "Link",
           url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
         },

@@ -7,6 +7,7 @@
 <script>
 import { v4 as uuid } from "uuid";
 export default {
+  name: "sakai-accordion",
   data() {
     return {
       id: "item",

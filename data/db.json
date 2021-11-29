@@ -21,6 +21,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -44,6 +49,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -67,6 +77,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -90,6 +105,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -113,10 +133,15 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
-      "id": 7,
+      "id": 6,
       "title": "Study Group",
       "contextTitle": "Lesson 23: name here",
       "live": true,
@@ -167,6 +192,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -213,6 +243,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     },
     {
@@ -236,6 +271,11 @@
           "disabled": false,
           "href": "https:edf.global"
         }
+      ],
+      "menuitems": [
+        { "id": 0, "icon": "edit", "string": "Edit", "url": "#" },
+        { "id": 1, "icon": "delete", "string": "Delete", "url": "#" },
+        { "id": 2, "icon": "link", "string": "Links", "url": "#" }
       ]
     }
   ]
