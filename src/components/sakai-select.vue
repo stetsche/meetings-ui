@@ -52,6 +52,7 @@ export default {
 </script>
 
 <style scoped>
+@import "../assets/sakai-colors.css";
 .form-select {
   background-color: var(--sakai-background-color-1);
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='grey' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");

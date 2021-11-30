@@ -53,11 +53,13 @@ export default {
 </script>
 
 <style>
+@import "../assets/sakai-colors.css";
 .sakai-wrapper {
   position: relative;
   display: flex;
   min-width: 100px;
   background: var(--sakai-background-color-1);
+  color: grey;
   border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
   width: 22rem;
@@ -80,11 +82,11 @@ input[type="checkbox"] {
   align-self: center;
 }
 .sakai-invalid {
-  outline: 1px solid rgb(255, 120, 96);
-  color: rgb(228, 155, 155);
+  outline: 1px solid rgb(205 137 137);
+  color: rgb(205 137 137);
 }
 .sakai-disabled {
-  outline: 1px solid rgb(204, 204, 204);
-  color: rgb(240, 240, 240);
+  outline: 1px solid rgb(255, 255, 255);
+  color: rgb(217 217 217);
 }
 </style>

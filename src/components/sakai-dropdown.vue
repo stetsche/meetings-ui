@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import SakaiIcon from "./sakai-icon.vue";
 import "/node_modules/bootstrap/js/dist/dropdown.js";
+import SakaiIcon from "./sakai-icon.vue";
 export default {
   components: {
     SakaiIcon,
@@ -72,38 +72,38 @@ export default {
 </script>
 
 <style>
+@import "../assets/sakai-colors.css";
 .iconWrap {
   width: 16.5px;
   margin-right: 6px;
 }
 .dropdown-item:hover {
-  background-color: rgb(240, 245, 252) !important;
+  background-color: var(--tool-menu-item-hover-background-color) !important;
   cursor: pointer;
-}
-ul {
-  box-shadow: 1px 2px 5px 1px #e0e0e0;
 }
 .dropdown-menu {
   min-width: 0 !important;
+  background-color: var(--tool-menu-background-color) !important;
+  box-shadow: var(--elevation-1dp) !important;
+  border: 1px solid var(--button-border-color) !important;
 }
 .dropdown-item {
   padding: 0.35rem 1rem !important;
+  color: var(--tool-menu-item-text-color) !important;
 }
 @media (max-width: 600px) {
-  ul {
+  .dropdown-menu {
     inset: auto auto -8px 0px !important;
     transform: unset !important;
     position: fixed !important;
-    border-radius: 10px !important;
-    box-shadow: 0 0 0 100vmax #9f9f9f42 !important;
-    width: 100%;
-  }
-  .dropdown-menu {
     padding: 0.6rem 2.5rem 0.8rem 2.5rem !important;
+    box-shadow: 0 0 0 100vmax #9f9f9f42 !important;
+    border-radius: 10px !important;
+    width: 100%;
   }
   .dropdown-item {
     padding: 1rem 1rem 1rem 30% !important;
-    border-bottom: 1px solid #e9e9e9 !important;
+    border-bottom: 1px solid var(--sakai-border-color) !important;
   }
   .dropdown-item:last-child {
     border-bottom: none !important;
