@@ -32,7 +32,12 @@
             <span>{{ statusText }}</span>
           </div>
           <div class="mx-1">
-            <span class="statusIcon" :class="statusIcon"></span>
+            <sakai-icon
+              :iconkey="statusIcon"
+              :color="
+                currentStatus == status.live ? liveIconColor : otherIconColor
+              "
+            />
           </div>
         </div>
       </div>
@@ -67,7 +72,6 @@
       </div>
       <div class="ms-auto p-1">
         <slot name="right"> </slot>
-        <!--TODO Replace this with sakai-button-->
         <sakai-button
           v-if="currentStatus != status.over"
           :disabled="!live"
@@ -82,21 +86,24 @@
 
 <style>
 .action-list > div {
-  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 1px solid var(--sakai-border-color);
   padding: 0.125rem;
 }
 </style>
 
 <style scoped>
 .card {
-  border-color: var(--sakai-border-color);
+  border: 1px solid var(--sakai-border-color);
+  border-radius: 6px;
 }
 .card-header {
   background-color: var(--sakai-background-color-2);
+  border-radius: 6px 6px 0 0;
 }
 
 .card-body {
   background-color: var(--sakai-background-color-1);
+  border-radius: 0 0 0px 6px;
 }
 </style>
 
@@ -109,15 +116,6 @@
 h2 {
   font-weight: 600;
   font-size: 22px;
-}
-
-.statusIcon {
-  color: #279be1; /*Sakai secondary-color*/
-}
-
-.statusIcon.livered {
-  /*color: #d0021b; /*like record button*/
-  color: var(--sakai-record-color); /*like record button*/
 }
 
 .contextTitle {
@@ -150,6 +148,8 @@ export default {
     return {
       status: { live: 0, waiting: 1, timeUntil: 2, over: 3 },
       avatarHeight: 40,
+      liveIconColor: "var(--sakai-record-color)",
+      otherIconColor: "var(--sakai-active-color)",
     };
   },
   props: {
@@ -222,7 +222,7 @@ export default {
         } else if (dayjs().isAfter(dayjs(this.endDate))) {
           return this.status.over;
         } else {
-          return this.status.timeUntil;
+          return this.status.waiting;
         }
       }
     },
@@ -235,20 +235,19 @@ export default {
         case this.status.timeUntil:
           return "starts " + dayjs().to(dayjs(this.startDate));
         default:
-          return "weired state";
+          return "something went wrong";
       }
     },
     statusIcon: function () {
-      //TODO - Use sakai-icon
       switch (this.currentStatus) {
         case this.status.live:
-          return "bi bi-record-circle livered";
+          return "live";
         case this.status.waiting:
-          return "fa fa-hourglass-o";
+          return "hourglass_emty";
         case this.status.timeUntil:
-          return "fa fa-bell";
+          return "bell";
         default:
-          return "fa fa-ban";
+          return "error";
       }
     },
     shownParticipants: function () {
