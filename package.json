@@ -12,7 +12,7 @@
     "build-storybook": "build-storybook",
     "storybook": "start-storybook -p 6006 -s ./public",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "npm run build-storybook -s ./public",
+    "predeploy": "npm run build-storybook && cp ./public ./storybook-static",
     "deploy-storybook": "gh-pages -d storybook-static"
   },
   "main": "index.js",

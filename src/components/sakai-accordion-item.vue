@@ -5,7 +5,7 @@
         class="accordion-button"
         type="button"
         data-bs-toggle="collapse"
-        aria-expanded="true"
+        :aria-expanded="open"
         :aria-controls="'item' + id"
         :class="!open ? 'collapsed' : ''"
         :data-bs-target="'#item' + id"
@@ -41,15 +41,26 @@
   background-color: var(--sakai-background-color-2);
   color: var(--sakai-link-color);
 }
+.accordion-body {
+  background-color: var(--sakai-background-color-1);
+}
 .accordion-button:not(.collapsed)::after {
   background-image: none;
+  content: "\f077";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 .accordion-button.collapsed::after {
   background-image: none;
-}
-.accordion-body {
-  border-color: red;
-  background-color: var(--sakai-background-color-1);
+  content: "\f077";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 </style>
 
@@ -66,6 +77,7 @@ export default {
   props: {
     title: { Type: String, default: "" },
     open: { Type: Boolean, default: false },
+    funny: { Type: Boolean, default: false },
   },
   computed: {
     showsOpen: function () {

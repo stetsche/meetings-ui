@@ -1,5 +1,9 @@
 <template>
-  <div class="sakai-icon" aria-hidden="true">
+  <div
+    class="sakai-icon"
+    aria-hidden="true"
+    :style="color ? 'color:' + color : undefined"
+  >
     <i :class="iconClass"></i>
   </div>
 </template>
@@ -21,6 +25,10 @@ export default {
       validator: function (value) {
         return Object.prototype.hasOwnProperty.call(icons, value);
       },
+    },
+    color: {
+      Type: String,
+      default: undefined,
     },
   },
   computed: {
