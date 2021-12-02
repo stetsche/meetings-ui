@@ -10,8 +10,7 @@
       :alt="altText"
     />
     <div v-if="variant == 'placeholder'" :style="placeholderStyle">
-      <!-- This can be replaced with the icon component later -->
-      <span class="fa fa-file-image-o"></span>
+      <sakai-icon iconkey="file_image"></sakai-icon>
     </div>
     <div v-if="variant == 'text'" :style="placeholderStyle">
       <span>{{ text }}</span>
@@ -20,7 +19,9 @@
 </template>
 
 <script>
+import sakaiIcon from "./sakai-icon.vue";
 export default {
+  components: { sakaiIcon },
   data: function () {
     return {
       loaded: false,
@@ -117,7 +118,11 @@ export default {
       return url;
     },
     altText: function () {
-      return "Profile Image of " + this.userName;
+      if (this.userName) {
+        return "Profile Image of " + this.userName;
+      } else {
+        return "Profile Image";
+      }
     },
   },
 };
