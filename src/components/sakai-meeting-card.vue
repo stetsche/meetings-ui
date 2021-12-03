@@ -149,7 +149,7 @@ export default {
       status: { live: 0, waiting: 1, timeUntil: 2, over: 3 },
       avatarHeight: 40,
       liveIconColor: "var(--sakai-record-color)",
-      otherIconColor: "var(--sakai-active-color)",
+      otherIconColor: "var(--sakai-secondary-color-1)",
     };
   },
   props: {

@@ -13,44 +13,101 @@
       </SakaiButton>
     </div>
     <sakai-accordion>
-      <sakai-accordion-item title="1. Meeting Information" open="true">
-        <SakaiInputLabelled title="Meetings Title" />
-        <SakaiInputLabelled title="Description" textarea="true" />
-        <div class="d-flex align-items-end">
-          <SakaiInputLabelled title="Preupload presentation" class="me-2" />
-          <SakaiButton text="Add" class="mb-4" />
-        </div>
-        <SakaiInputLabelled
-          title="Description"
-          select="true"
-          :items="confServ"
-        />
-        <div class="d-flex">
-          <SakaiInput type="checkbox" />
-          <label class="ms-2" for="input">Record Meeting</label>
-        </div>
-        <div class="d-flex">
-          <SakaiInput type="checkbox" />
-          <label class="ms-2" for="input">Disable Chat</label>
-        </div>
-        <div class="d-flex">
-          <SakaiInput type="checkbox" />
-          <label class="ms-2" for="input">Wait For Moderator</label>
+      <sakai-accordion-item title="1. Meeting Information">
+        <div class="d-flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+            <SakaiInputLabelled title="Meetings Title" />
+          </div>
+          <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+            <SakaiInputLabelled title="Description" textarea="true" />
+          </div>
+          <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+            <SakaiInputLabelled title="Preupload presentation" />
+            <SakaiButton text="Add" class="me-md-auto" />
+          </div>
+          <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+            <SakaiInputLabelled
+              title="Video conferencing service"
+              select="true"
+              :items="confServ"
+            />
+          </div>
+          <div class="d-flex">
+            <SakaiInput type="checkbox" />
+            <label class="ms-2" for="input">Record Meeting</label>
+          </div>
+          <div class="d-flex">
+            <SakaiInput type="checkbox" />
+            <label class="ms-2" for="input">Disable Chat</label>
+          </div>
+          <div class="d-flex">
+            <SakaiInput type="checkbox" />
+            <label class="ms-2" for="input">Wait For Moderator</label>
+          </div>
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="2. Participants">
-        <SakaiInputLabelled
-          title="Participant Type"
-          select="true"
-          :items="partType"
-        />
-        <SakaiButton text="Apply" />
+        <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+          <SakaiInputLabelled
+            title="Participant Type"
+            select="true"
+            :items="partType"
+          />
+          <SakaiButton text="Apply" />
+        </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="3. Availability">
-        Some Availability Settings
+        <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+          <sakai-input-labelled title="Open Date" type="date" />
+        </div>
+        <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+          <sakai-input-labelled title="Closed Date" type="date" />
+        </div>
+        <div class="d-flex flex-column gap-2 align-items-md-end flex-md-row">
+          <SakaiInputLabelled
+            title="Closed Date"
+            select="true"
+            :items="calendars"
+          />
+        </div>
       </sakai-accordion-item>
-      <sakai-accordion-item title="4. Notification">
-        Some Notification Settings
+      <sakai-accordion-item title="4. Notification" :open="true">
+        <div
+          class="d-flex flex-column gap-2 mb-2 align-items-md-end flex-md-row"
+          v-for="notification in notifications"
+          :key="notification.id"
+        >
+          <sakai-input-labelled
+            :select="true"
+            :title="notification.notificationTypes.label"
+            :items="notification.notificationTypes.options"
+            v-model="notification.notificationTypes.selected"
+          />
+          <div class="d-flex flex-row gap-2 align-items-end">
+            <sakai-input v-model.number="notification.frequency.times" />
+            <sakai-input-labelled
+              :select="true"
+              :title="notification.frequency.label"
+              :items="notification.frequency.options"
+              v-model="notification.frequency.selected"
+            />
+          </div>
+          <sakai-button
+            text="Remove Notification"
+            :circle="true"
+            :textHidden="true"
+            :clear="true"
+          >
+            <template #append>
+              <sakai-icon iconkey="remove" />
+            </template>
+          </sakai-button>
+        </div>
+        <sakai-button
+          text="New Notification"
+          :primary="true"
+          @click="addNotification"
+        />
       </sakai-accordion-item>
       <sakai-accordion-item title="5. Meeting Add-ons">
         Some Meeting Add-ons Settings
@@ -79,6 +136,7 @@ import SakaiButton from "../components/sakai-button.vue";
 import SakaiInput from "../components/sakai-input.vue";
 // eslint-disable-next-line
 import toggletheme from "../assets/toggletheme.js";
+import SakaiIcon from "../components/sakai-icon.vue";
 export default {
   components: {
     SakaiAccordionItem,
@@ -86,6 +144,49 @@ export default {
     SakaiInputLabelled,
     SakaiButton,
     SakaiInput,
+    SakaiIcon,
+  },
+  data() {
+    return {
+      notifications: [
+        {
+          id: 1,
+          notificationTypes: {
+            label: "Notification Type",
+            selected: "email",
+            options: [
+              {
+                string: "Email",
+                value: "email",
+              },
+              {
+                string: "Browser",
+                value: "browser",
+              },
+            ],
+          },
+          frequency: {
+            label: "Frequency",
+            selected: "days",
+            times: 1,
+            options: [
+              {
+                string: "Days before",
+                value: "days",
+              },
+              {
+                string: "Hours before",
+                value: "hours",
+              },
+              {
+                string: "Minutes before",
+                value: "minutes",
+              },
+            ],
+          },
+        },
+      ],
+    };
   },
   props: {
     confServ: {
@@ -93,15 +194,15 @@ export default {
       default: () => [
         {
           string: "Big Bule Button",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+          value: "big_blue_button",
         },
         {
           string: "Microsoft Teams",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+          value: "microsoft_teams",
         },
         {
           string: "Zoom",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+          value: "zoom",
         },
       ],
     },
@@ -110,19 +211,32 @@ export default {
       default: () => [
         {
           string: "All Site Members",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+          value: "all_site_members",
         },
         {
           string: "Role",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+          value: "role",
         },
         {
           string: "Selections/Groups",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+          value: "sections_or_groups",
         },
         {
           string: "Users",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+          value: "users",
+        },
+      ],
+    },
+    calendars: {
+      type: Array,
+      default: () => [
+        {
+          string: "Google Calendar",
+          value: "calendar_google",
+        },
+        {
+          string: "Outlook",
+          value: "calendar_outlook",
         },
       ],
     },
@@ -130,6 +244,9 @@ export default {
   methods: {
     switchtheme: function () {
       toggletheme();
+    },
+    addNotification() {
+      console.log(this.notifications[0]);
     },
   },
 };

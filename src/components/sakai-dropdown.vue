@@ -1,24 +1,31 @@
 <template>
-  <div class="dropdown">
-    <div data-bs-toggle="dropdown">
-      <slot name="activation"> </slot>
+  <div>
+    <div class="dropdown">
+      <div data-bs-toggle="dropdown">
+        <slot name="activation"> </slot>
+      </div>
+      <ul class="dropdown-menu">
+        <li
+          v-for="item in items"
+          :key="item.id"
+          @click="select(item.id)"
+          class="dropdown-item"
+        >
+          <sakai-icon
+            :iconkey="item.icon"
+            class="iconWrap"
+            :class="item.icon"
+          />
+          {{ item.string }}
+        </li>
+      </ul>
     </div>
-    <ul class="dropdown-menu">
-      <li
-        v-for="item in items"
-        :key="item.id"
-        @click="select(item.id)"
-        class="dropdown-item"
-      >
-        <sakai-icon :iconkey="item.icon" class="iconWrap" :class="item.icon" />
-        {{ item.string }}
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
-import "/node_modules/bootstrap/js/dist/dropdown.js";
+// eslint-disable-next-line
+import Dropdown from "bootstrap/js/dist/dropdown";
 import SakaiIcon from "./sakai-icon.vue";
 export default {
   components: {

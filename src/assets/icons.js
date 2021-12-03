@@ -32,6 +32,7 @@ const icons_bootstrap = {
   live: "bi-record-circle",
   play: "bi-play-circle",
   presentation: "bi-easel",
+  remove: "bi-x-circle",
 };
 
 const _fa = prependBaseClass(icons_fontawsome, "fa");

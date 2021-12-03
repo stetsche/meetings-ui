@@ -59,7 +59,7 @@ export default {
   color: var(--sakai-text-color-1);
   border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
-  width: 22rem;
+  width: 100%;
   height: 2.25rem;
 }
 </style>

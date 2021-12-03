@@ -1,25 +1,26 @@
 import SakaiDropdown from "../src/components/sakai-dropdown.vue";
 import SakaiButton from "../src/components/sakai-button.vue";
+import SakaiIcon from "../src/components/sakai-icon.vue";
 
 export default {
-  component: SakaiDropdown,
+  components: { SakaiDropdown, SakaiButton, SakaiIcon },
   title: "Components/SakaiDropdown",
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { SakaiDropdown, SakaiButton },
-  props: Object.keys(argTypes),
-  template: `<div @click="showMenu = !showMenu">
+  components: { SakaiDropdown, SakaiButton, SakaiIcon },
+  rops: Object.keys(argTypes),
+  template: `
         <SakaiDropdown v-bind="$props">
           <template #activation>
             <SakaiButton text="Options">
               <template #append>
-                <i class="fa" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                <sakai-icon iconkey="question"/>
               </template>
             </SakaiButton>
           </template>
         </SakaiDropdown>
-      </div>`,
+  `,
 });
 
 export const Primary = Template.bind({});

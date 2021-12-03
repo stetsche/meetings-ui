@@ -1,9 +1,9 @@
 <template>
-  <div class="mb-4">
+  <div>
     <div>
       <label class="mb-1" for="input">{{ title }}</label>
     </div>
-    <textarea v-if="textarea" class="sakai-area" rows="10" cols="85" />
+    <textarea v-if="textarea" class="sakai-area" rows="10" />
     <SakaiSelect v-else-if="select" :items="items" />
     <SakaiInput v-else :type="inputType" />
   </div>
@@ -20,7 +20,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Tile",
+      default: "Title",
     },
     textarea: {
       textarea: Boolean,
@@ -51,5 +51,6 @@ export default {
   border-radius: 5px;
   padding: 0.375rem;
   outline: none;
+  width: 100%;
 }
 </style>

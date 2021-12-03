@@ -26,40 +26,49 @@
         </SakaiButton>
       </div>
 
-      <div
-        class="d-flex flex-comumn flex-sm-row flex-wrap gap-2 mb-4 div-heigth"
-      >
-        <SakaiButton text="Create New Meeting" class="order-1">
+      <div class="d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
+        <SakaiButton text="Create New Meeting" class="order-1 me-md-auto">
           <template #prepend>
             <sakai-icon class="me-1" iconkey="plus" />
           </template>
         </SakaiButton>
-        <div class="order-2 flex-fill"></div>
         <SakaiInput
-          class="order-xs-0 order-sm-3 flex-fill div-height"
-          style="max-width: 570px; min-width: 340px"
+          class="order-0 order-md-2 div-height"
+          style="min-width: 20%"
         >
           <template #prepend>
             <sakai-icon class="search-icon" iconkey="search" />
           </template>
         </SakaiInput>
-        <div @click="btnPress1 = !btnPress1" class="order-4">
-          <SakaiDropdown :items="items">
-            <template #activation>
-              <SakaiButton text="Options">
-                <template #append>
-                  <sakai-icon
-                    class="ms-1"
-                    :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
-                  />
-                </template>
-              </SakaiButton>
-            </template>
-          </SakaiDropdown>
-        </div>
+        <SakaiDropdown
+          :items="items"
+          @click="btnPress1 = !btnPress1"
+          class="order-3"
+        >
+          <template #activation>
+            <SakaiButton text="Options" class="w-100">
+              <template #append>
+                <sakai-icon
+                  class="ms-1"
+                  :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
+                />
+              </template>
+            </SakaiButton>
+          </template>
+        </SakaiDropdown>
       </div>
 
-      <h5 class="accordion-header" id="flush-headingOne">Happening Today</h5>
+      <div
+        class="d-flex flex-column align-items-md-end flex-md-row gap-2 mb-4 div-heigth"
+      >
+        <sakai-input-labelled
+          title="Preupload presentation"
+          class="div-height"
+          style="min-width: 20%"
+        />
+        <SakaiButton text="Add" />
+      </div>
+      <div class="accordion-header" id="flush-headingOne">Happening Today</div>
       <hr class="mb-0 mt-2" />
       <div>
         <div class="accordion-body p-0 pb-4">
@@ -168,6 +177,7 @@ import SakaiIcon from "./components/sakai-icon.vue";
 
 // eslint-disable-next-line
 import toggletheme from "./assets/toggletheme.js";
+import SakaiInputLabelled from "./components/sakai-input-labelled.vue";
 
 export default {
   components: {
@@ -176,6 +186,7 @@ export default {
     SakaiButton,
     SakaiDropdown,
     SakaiIcon,
+    SakaiInputLabelled,
   },
   data() {
     return {
