@@ -8,12 +8,12 @@
   >
     <slot name="prepend" />
     <input
-      id="input"
+      v-model="internalValue"
+      :id="id"
       :name="name"
       :type="type"
       :class="{ 'sakai-input': type != 'checkbox' }"
       :disabled="disabled"
-      v-model="value"
       :placeholder="placeholder"
     />
     <slot name="apend" />
@@ -22,7 +22,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      internalValue: null,
+    };
+  },
+  watch: {
+    internalValue(newValue) {
+      this.$emit("input", newValue);
+    },
+  },
   props: {
+    id: {
+      type: String,
+      default: "input",
+    },
     type: {
       type: String,
       default: "text",
@@ -43,11 +57,17 @@ export default {
       type: String,
       default: "",
     },
+    value: {
+      type: [String, Boolean],
+      default: "",
+    },
   },
-  data() {
-    return {
-      value: null,
-    };
+  mounted() {
+    this.internalValue = this.value;
+  },
+  model: {
+    prop: "value",
+    event: "input",
   },
 };
 </script>

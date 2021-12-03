@@ -45,6 +45,12 @@
           :items="partType"
         />
         <SakaiButton text="Apply" />
+        <SakaiParticipantsList
+          :participants="participants"
+          @select="createRoom"
+          class="mt-4"
+        />
+        <!-- <div>{{ selectedParticipants }}</div> -->
       </sakai-accordion-item>
       <sakai-accordion-item title="3. Availability">
         Some Availability Settings
@@ -65,10 +71,6 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../assets/sakai-colors.css";
 @import "../assets/page.css";
-.wrapper {
-  background-color: pink;
-  padding: 1rem;
-}
 </style>
 
 <script>
@@ -77,6 +79,7 @@ import SakaiAccordion from "../components/sakai-accordion.vue";
 import SakaiInputLabelled from "../components/sakai-input-labelled.vue";
 import SakaiButton from "../components/sakai-button.vue";
 import SakaiInput from "../components/sakai-input.vue";
+import SakaiParticipantsList from "../components/sakai-participants-list.vue";
 // eslint-disable-next-line
 import toggletheme from "../assets/toggletheme.js";
 export default {
@@ -86,6 +89,7 @@ export default {
     SakaiInputLabelled,
     SakaiButton,
     SakaiInput,
+    SakaiParticipantsList,
   },
   props: {
     confServ: {
@@ -127,9 +131,32 @@ export default {
       ],
     },
   },
+  data() {
+    return {
+      participants: [
+        {
+          form: "square",
+          userId: "9072hbs3-sb23-sfef-f93r-9q678g7g3qrh",
+          userName: "Bailey Rutheee",
+        },
+        {
+          userId: "454db719-443a-400f-b4d4-4dfada8091c0",
+          userName: "Victor van Dijkdd",
+        },
+        {
+          userId: "67aefef6-32df-8fe7-87fe-90721ar79def",
+          userName: "Aufderhar Jamison",
+        },
+      ],
+      selectedParticipants: [],
+    };
+  },
   methods: {
     switchtheme: function () {
       toggletheme();
+    },
+    createRoom(participants) {
+      this.$set(this, "selectedParticipants", participants);
     },
   },
 };
