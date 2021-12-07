@@ -7,24 +7,24 @@ const prependBaseClass = (icons, baseClass) => {
 };
 
 const icons_fontawsome = {
+  all: "fa-th-large",
   bell: "fa-bell",
   chevron_down: "fa-chevron-down",
   chevron_up: "fa-chevron-up",
+  delete: "fa-trash",
+  edit: "fa-pencil",
   error: "fa-ban",
   file_image: "fa-file-image-o",
   hourglass_emty: "fa-hourglass-o",
+  link: "fa-link",
   maximize: "fa-arrows-alt",
   menu_kebab: "fa-ellipsis-v",
+  permissions: "fa-lock",
   plus: "fa-plus",
   question: "fa-question",
   search: "fa-search",
-  videocamera: "fa-video-camera",
-  edit: "fa-pencil",
-  delete: "fa-trash",
-  link: "fa-link",
-  permissions: "fa-lock",
   template: "fa-book",
-  all: "fa-th-large",
+  videocamera: "fa-video-camera",
 };
 const icons_bootstrap = {
   attachment: "bi-paperclip",
@@ -32,6 +32,7 @@ const icons_bootstrap = {
   live: "bi-record-circle",
   play: "bi-play-circle",
   presentation: "bi-easel",
+  remove: "bi-x-circle",
 };
 
 const _fa = prependBaseClass(icons_fontawsome, "fa");

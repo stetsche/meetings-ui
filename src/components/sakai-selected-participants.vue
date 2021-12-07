@@ -58,8 +58,8 @@
 
 <script>
 // eslint-disable-next-line
-import { v4 as uuid } from "uuid";
 import { Collapse } from "bootstrap";
+import { v4 as uuid } from "uuid";
 import SakaiAvatar from "./sakai-avatar.vue";
 import SakaiIcon from "./sakai-icon.vue";
 export default {

@@ -26,40 +26,36 @@
         </SakaiButton>
       </div>
 
-      <div
-        class="d-flex flex-comumn flex-sm-row flex-wrap gap-2 mb-4 div-heigth"
-      >
-        <SakaiButton text="Create New Meeting" class="order-1">
+      <div class="d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
+        <SakaiButton text="Create New Meeting" class="order-1 me-md-auto">
           <template #prepend>
             <sakai-icon class="me-1" iconkey="plus" />
           </template>
         </SakaiButton>
-        <div class="order-2 flex-fill"></div>
-        <SakaiInput
-          class="order-xs-0 order-sm-3 flex-fill div-height"
-          style="max-width: 570px; min-width: 340px"
-        >
+        <SakaiInput class="order-0 order-md-2 w-auto" style="min-width: 20%">
           <template #prepend>
             <sakai-icon class="search-icon" iconkey="search" />
           </template>
         </SakaiInput>
-        <div @click="btnPress1 = !btnPress1" class="order-4">
-          <SakaiDropdown :items="items">
-            <template #activation>
-              <SakaiButton text="Options">
-                <template #append>
-                  <sakai-icon
-                    class="ms-1"
-                    :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
-                  />
-                </template>
-              </SakaiButton>
-            </template>
-          </SakaiDropdown>
-        </div>
+        <SakaiDropdown
+          :items="items"
+          @click="btnPress1 = !btnPress1"
+          class="order-3"
+        >
+          <template #activation>
+            <SakaiButton text="Options" class="w-100">
+              <template #append>
+                <sakai-icon
+                  class="ms-1"
+                  :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
+                />
+              </template>
+            </SakaiButton>
+          </template>
+        </SakaiDropdown>
       </div>
 
-      <h5 class="accordion-header" id="flush-headingOne">Happening Today</h5>
+      <h5 id="flush-headingOne">Happening Today</h5>
       <hr class="mb-0 mt-2" />
       <div>
         <div class="accordion-body p-0 pb-4">
@@ -112,9 +108,7 @@
         </div>
       </div>
       <div class="d-flex align-items-end">
-        <div>
-          <h5 class="accordion-header" id="flush-headingThree">Past</h5>
-        </div>
+        <h5 class="mb-0" id="flush-headingThree">Past</h5>
         <div class="ms-auto">
           <div @click="btnPress2 = !btnPress2" class="ms-auto">
             <SakaiDropdown :items="showAll">

@@ -82,8 +82,8 @@ export default {
   color: grey;
   border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
-  width: 22rem;
   height: 2.25rem;
+  width: 100%;
 }
 .sakai-input {
   color: var(--sakai-text-color-1);

@@ -18,7 +18,7 @@
     </div>
     <div v-if="ourParticipants.length > 0" class="participants-container mb-4">
       <div
-        v-for="participant in ourParticipants"
+        v-for="(participant, index) in ourParticipants"
         :key="participant.userId"
         class="d-flex align-items-center justify-content-between p-2 border-bottom"
       >
@@ -39,11 +39,17 @@
           <SakaiSelect :items="role" style="width: 11.2rem; border: none" />
         </div>
         <div class="d-flex justify-content-end w-100">
-          <SakaiInput
+          <input
+            type="checkbox"
+            :checked="participant.selected"
+            @change="updateSelection(index)"
+          />
+          <!-- <SakaiInput
             name="chBox"
             type="checkbox"
-            v-model="participant.selected"
-          />
+            :checked="participant.selected"
+            @change="updateSelection(index)"
+          /> -->
         </div>
       </div>
     </div>
@@ -56,7 +62,7 @@
         @click="emitSelected"
       />
       <SakaiButton class="ms-auto me-2" text="Edit roles" />
-      <SakaiButton text="Remove" @click="removeSelection()" />
+      <SakaiButton text="Remove" />
     </div>
   </div>
 </template>
@@ -126,16 +132,7 @@ export default {
   },
   watch: {
     selectAllCheck(newValue) {
-      if (newValue) {
-        this.$set(
-          this,
-          "ourParticipants",
-          [...this.participants].map((participant) => {
-            participant.selected = true;
-            return participant;
-          })
-        );
-      }
+      this.selectAll(newValue);
     },
   },
   computed: {
@@ -151,22 +148,15 @@ export default {
     emitSelected() {
       this.$emit("select", this.selectedParticipants);
     },
-    selectAll() {
-      /*  this.$set(
+    selectAll(value) {
+      this.$set(
         this,
         "ourParticipants",
-        [...this.participants].map((participant) => {
-          participant.selected = true;
+        [...this.ourParticipants].map((participant) => {
+          participant.selected = value;
           return participant;
         })
-      );*/
-
-      let checkAll = document.getElementById("checkAll").checked;
-      const checkBoxes = document.getElementsByName("chBox");
-
-      for (let checkBox of checkBoxes) {
-        checkBox.checked = checkAll;
-      }
+      );
     },
     newParticipants: function () {
       this.$set(
@@ -178,36 +168,21 @@ export default {
         })
       );
     },
-    removeSelection() {
-      let checkAll = document.getElementById("checkAll");
-      const checkBoxes = document.getElementsByName("chBox");
-
-      checkAll.checked = false;
-      for (let checkBox of checkBoxes) {
-        checkBox.checked = false;
-      }
-    },
-    getSelection() {
-      //console.log(this.ourParticipants);
+    updateSelection(index) {
+      let updated = [...this.participants];
+      updated[index].selected = !updated[index].selected;
+      this.$set(this, "ourParticipants", updated);
     },
   },
   mounted() {
-    this.$set(
-      this,
-      "ourParticipants",
-      [...this.participants].map((participant) => {
-        participant.selected = false;
-        return participant;
-      })
-    );
+    this.newParticipants();
   },
 };
 </script>
 
 <style scoped>
 .wrapper {
-  max-width: 55rem;
-  min-width: 40rem;
+  width: 100%;
 }
 .participants-container {
   padding-right: 1rem;
