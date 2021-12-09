@@ -1,6 +1,13 @@
 <template>
-  <select class="form-select" :name="name" id="slct">
-    <option v-for="item in items" :key="item['item-key']" :value="item[value]">
+  <select
+    class="form-select"
+    :name="name"
+    id="slct"
+    :value="value"
+    @change="$emit('change', $event.target.value)"
+  >
+    <option v-for="item in items" :key="item.value" :value="item.value">
+      <!-- <option v-for="item in items" :key="item['item-key']" :value="item[value]"> -->
       {{ item.string }}
     </option>
   </select>

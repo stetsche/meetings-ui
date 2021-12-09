@@ -10,7 +10,7 @@
         <div class="d-flex justify-content-center w-100">
           <label class="fw-bold" for="">Role</label>
         </div>
-        <div class="d-flex justify-content-end w-100" @click="selectAll()">
+        <div class="d-flex justify-content-end w-100">
           <label class="fw-bold me-2" for="checkAll">Select All </label>
           <SakaiInput id="checkAll" v-model="selectAllCheck" type="checkbox" />
         </div>
@@ -36,7 +36,12 @@
           class="d-flex justify-content-center w-100"
           @click="btnPress1 = !btnPress1"
         >
-          <SakaiSelect :items="role" style="width: 11.2rem; border: none" />
+          <SakaiSelect
+            :items="role"
+            :value="participant.role"
+            @change="updateRole(index, $event)"
+            style="width: 11.2rem; border: none"
+          />
         </div>
         <div class="d-flex justify-content-end w-100">
           <input
@@ -84,22 +89,16 @@ export default {
       type: Array,
       default: () => [
         {
-          id: 0,
-          icon: "permissions",
           string: "Moderator",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+          value: "moderator",
         },
         {
-          id: 1,
-          icon: "template",
           string: "Attendee",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+          value: "attendee",
         },
         {
-          id: 2,
-          icon: "link",
           string: "Teaching Assistant",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+          value: "teaching_assistant",
         },
       ],
     },
@@ -164,13 +163,21 @@ export default {
         "ourParticipants",
         [...this.participants].map((participant) => {
           participant.selected = false;
+          participant.role = "attendee";
           return participant;
         })
       );
     },
     updateSelection(index) {
-      let updated = [...this.participants];
+      let updated = [...this.ourParticipants];
       updated[index].selected = !updated[index].selected;
+      this.ourParticipants = updated;
+      this.$set(this, "ourParticipants", updated);
+    },
+    updateRole(index, role) {
+      let updated = [...this.ourParticipants];
+      updated[index].role = role;
+      this.ourParticipants = updated;
       this.$set(this, "ourParticipants", updated);
     },
   },

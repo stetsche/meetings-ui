@@ -13,7 +13,7 @@
       </SakaiButton>
     </div>
     <sakai-accordion>
-      <sakai-accordion-item title="1. Meeting Information">
+      <sakai-accordion-item title="1. Meeting Information" :open="true">
         <div class="col-sm-12 col-xl-7">
           <div class="row">
             <div class="col">
@@ -25,6 +25,8 @@
               <SakaiInputLabelled title="Description" textarea="true" />
             </div>
           </div>
+        </div>
+        <div class="col-sm-12 col-xl-4">
           <div class="row mt-3 align-items-md-end">
             <div class="col">
               <SakaiInputLabelled title="Preupload presentation" />
@@ -60,7 +62,7 @@
           </div>
         </div>
       </sakai-accordion-item>
-      <sakai-accordion-item title="2. Participants" :open="true">
+      <sakai-accordion-item title="2. Participants">
         <div class="row">
           <div class="col-sm-12 col-xl-7">
             <div class="row align-items-md-end">
@@ -100,7 +102,7 @@
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="3. Availability">
-        <div class="col-sm-12 col-xl-7">
+        <div class="col-sm-12 col-xl-3">
           <div class="row align-items-md-end">
             <div class="col">
               <sakai-input-labelled title="Open Date" type="date" />
@@ -122,7 +124,7 @@
           </div>
         </div>
       </sakai-accordion-item>
-      <sakai-accordion-item title="4. Notification">
+      <sakai-accordion-item title="4. Notifications">
         <div class="col-sm-12 col-xl-7">
           <div
             class="d-flex flex-column gap-3 mb-3 align-items-md-end flex-md-row"
@@ -134,11 +136,12 @@
               :title="notification.notificationTypes.label"
               :items="notification.notificationTypes.options"
               v-model="notification.notificationTypes.selected"
-              class="w-auto"
+              class="w-100"
             />
-            <div class="d-flex flex-row gap-3 align-items-end">
+            <div class="d-flex flex-row gap-3 align-items-end w-100">
               <sakai-input
                 v-model.number="notification.frequency.times"
+                type="number"
                 style="max-width: 3rem"
               />
               <sakai-input-labelled
@@ -149,7 +152,24 @@
                 class="w-100"
               />
             </div>
-            <sakai-button text="Remove Notification"> </sakai-button>
+            <sakai-button
+              class="d-none d-md-block ml-n3"
+              text="Remove Notification"
+              :textHidden="true"
+              :clear="true"
+              :circle="true"
+              @click="removeNotification(notification.id)"
+            >
+              <template #append>
+                <sakai-icon iconkey="remove" />
+              </template>
+            </sakai-button>
+            <sakai-button
+              class="d-block d-md-none"
+              text="Remove Notification"
+              @click="removeNotification(notification.id)"
+            >
+            </sakai-button>
           </div>
           <div class="row">
             <div class="col-sm-12 col-md-auto">
@@ -188,6 +208,7 @@ import SakaiParticipantsList from "../components/sakai-participants-list.vue";
 // eslint-disable-next-line
 import toggletheme from "../assets/toggletheme.js";
 import SakaiSelectedParticipants from "../components/sakai-selected-participants.vue";
+import SakaiIcon from "../components/sakai-icon.vue";
 export default {
   components: {
     SakaiAccordionItem,
@@ -197,47 +218,47 @@ export default {
     SakaiInput,
     SakaiParticipantsList,
     SakaiSelectedParticipants,
+    SakaiIcon,
   },
   data() {
     return {
-      notifications: [
-        {
-          id: 1,
-          notificationTypes: {
-            label: "Notification Type",
-            selected: "email",
-            options: [
-              {
-                string: "Email",
-                value: "email",
-              },
-              {
-                string: "Browser",
-                value: "browser",
-              },
-            ],
-          },
-          frequency: {
-            label: "Frequency",
-            selected: "days",
-            times: 1,
-            options: [
-              {
-                string: "Days before",
-                value: "days",
-              },
-              {
-                string: "Hours before",
-                value: "hours",
-              },
-              {
-                string: "Minutes before",
-                value: "minutes",
-              },
-            ],
-          },
+      notifications: [],
+      notificationTemplate: {
+        id: 0,
+        notificationTypes: {
+          label: "Notification Type",
+          selected: "email",
+          options: [
+            {
+              string: "Email",
+              value: "email",
+            },
+            {
+              string: "Browser",
+              value: "browser",
+            },
+          ],
         },
-      ],
+        frequency: {
+          label: "Frequency",
+          selected: "days",
+          times: 1,
+          options: [
+            {
+              string: "Days before",
+              value: "days",
+            },
+            {
+              string: "Hours before",
+              value: "hours",
+            },
+            {
+              string: "Minutes before",
+              value: "minutes",
+            },
+          ],
+        },
+      },
       participants: [
         {
           form: "square",
@@ -317,7 +338,23 @@ export default {
       this.$set(this, "selectedParticipants", participants);
     },
     addNotification() {
-      console.log(this.notifications[0]);
+      let newNotification = { ...this.notificationTemplate };
+      if (this.notifications.length > 0) {
+        newNotification.id =
+          this.notifications[this.notifications.length - 1].id + 1;
+      }
+      console.log(this.notifications);
+      let updatedNotifications = [...this.notifications];
+      updatedNotifications.push(newNotification);
+      this.$set(this, "notifications", updatedNotifications);
+    },
+    removeNotification(id) {
+      let index = this.notifications.findIndex(
+        (notification) => notification.id == id
+      );
+      if (index > -1) {
+        this.notifications.splice(index, 1);
+      }
     },
   },
 };
