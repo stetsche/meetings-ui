@@ -309,26 +309,6 @@ export default {
       ],
     },
   },
-  data() {
-    return {
-      participants: [
-        {
-          form: "square",
-          userId: "9072hbs3-sb23-sfef-f93r-9q678g7g3qrh",
-          userName: "Bailey Rutheee",
-        },
-        {
-          userId: "454db719-443a-400f-b4d4-4dfada8091c0",
-          userName: "Victor van Dijkdd",
-        },
-        {
-          userId: "67aefef6-32df-8fe7-87fe-90721ar79def",
-          userName: "Aufderhar Jamison",
-        },
-      ],
-      selectedParticipants: [],
-    };
-  },
   methods: {
     switchtheme: function () {
       toggletheme();
