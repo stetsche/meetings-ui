@@ -4,8 +4,15 @@
       <label class="mb-1" for="input">{{ title }}</label>
     </div>
     <textarea v-if="textarea" class="sakai-area" rows="10" />
-    <SakaiSelect v-else-if="select" :items="items" />
-    <SakaiInput v-else :type="inputType" />
+    <SakaiSelect v-else-if="select" :items="items" :value="value" />
+    <SakaiInput v-else :type="type" :value="value">
+      <template #prepend>
+        <slot name="prepend" />
+      </template>
+      <template #append>
+        <slot name="append" />
+      </template>
+    </SakaiInput>
   </div>
 </template>
 
@@ -33,9 +40,13 @@ export default {
     items: {
       type: Array,
     },
-    inputType: {
+    type: {
       type: String,
       default: "text",
+    },
+    value: {
+      type: [String, Boolean, Number],
+      default: undefined,
     },
   },
 };

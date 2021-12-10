@@ -16,12 +16,21 @@
       :disabled="disabled"
       :placeholder="placeholder"
     />
-    <slot name="apend" />
+
+    <slot name="append">
+      <sakai-icon
+        v-if="type == 'date'"
+        class="icon-append"
+        iconkey="calendar"
+      ></sakai-icon>
+    </slot>
   </div>
 </template>
 
 <script>
+import sakaiIcon from "./sakai-icon.vue";
 export default {
+  components: { sakaiIcon },
   data() {
     return {
       internalValue: null,
@@ -61,6 +70,11 @@ export default {
       type: [String, Boolean],
       default: "",
     },
+    min: {
+      //for input number
+      type: [String, Number],
+      default: undefined,
+    },
   },
   mounted() {
     this.internalValue = this.value;
@@ -99,6 +113,10 @@ input[type="checkbox"] {
 }
 .search-icon {
   padding: 0 0 0 8px;
+  align-self: center;
+}
+.icon-append {
+  padding: 0 8px 0 0;
   align-self: center;
 }
 .sakai-invalid {
