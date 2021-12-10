@@ -41,6 +41,7 @@
                 title="Video conferencing service"
                 select="true"
                 :items="confServ"
+                value="zoom"
               />
             </div>
           </div>
@@ -116,8 +117,9 @@
           <div class="row align-items-md-end">
             <div class="col">
               <SakaiInputLabelled
-                title="Closed Date"
+                title="Calendar Service"
                 select="true"
+                value="calendar_google"
                 :items="calendars"
               />
             </div>
@@ -152,18 +154,20 @@
                 class="w-100"
               />
             </div>
-            <sakai-button
-              class="d-none d-md-block ml-n3"
-              text="Remove Notification"
-              :textHidden="true"
-              :clear="true"
-              :circle="true"
-              @click="removeNotification(notification.id)"
-            >
-              <template #append>
-                <sakai-icon iconkey="remove" />
-              </template>
-            </sakai-button>
+            <div>
+              <sakai-button
+                class="d-none d-md-block ml-n3"
+                text="Remove Notification"
+                :textHidden="true"
+                :clear="true"
+                :circle="true"
+                @click="removeNotification(notification.id)"
+              >
+                <template #append>
+                  <sakai-icon iconkey="remove" />
+                </template>
+              </sakai-button>
+            </div>
             <sakai-button
               class="d-block d-md-none"
               text="Remove Notification"
@@ -275,6 +279,16 @@ export default {
         },
       ],
       selectedParticipants: [],
+      calendars: [
+        {
+          string: "Google Calendar",
+          value: "calendar_google",
+        },
+        {
+          string: "Microsoft Outlook",
+          value: "calendar_outlook",
+        },
+      ],
     };
   },
   props: {
@@ -313,19 +327,6 @@ export default {
         {
           string: "Users",
           value: "users",
-        },
-      ],
-    },
-    calendars: {
-      type: Array,
-      default: () => [
-        {
-          string: "Google Calendar",
-          value: "calendar_google",
-        },
-        {
-          string: "Outlook",
-          value: "calendar_outlook",
         },
       ],
     },

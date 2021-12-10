@@ -9,6 +9,7 @@ const prependBaseClass = (icons, baseClass) => {
 const icons_fontawsome = {
   all: "fa-th-large",
   bell: "fa-bell",
+  calendar: "fa-calendar-o",
   chevron_down: "fa-chevron-down",
   chevron_up: "fa-chevron-up",
   delete: "fa-trash",
