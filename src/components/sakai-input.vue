@@ -111,6 +111,9 @@ input[type="checkbox"] {
   background-color: var(--sakai-background-color-1);
   border: 1px solid var(--sakai-border-color);
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: none;
+}
 .search-icon {
   padding: 0 0 0 8px;
   align-self: center;

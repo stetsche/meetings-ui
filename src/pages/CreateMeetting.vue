@@ -14,110 +14,107 @@
     </div>
     <sakai-accordion>
       <sakai-accordion-item title="1. Meeting Information" :open="true">
-        <div class="col-sm-12 col-xl-7">
-          <div class="row">
-            <div class="col">
-              <SakaiInputLabelled title="Meetings Title" />
-            </div>
+        <div class="pb-4">
+          <div class="col-xs-12 col-md-4 col-xl-3">
+            <SakaiInputLabelled title="Meetings Title" />
           </div>
-          <div class="row mt-3">
-            <div class="col">
-              <SakaiInputLabelled title="Description" textarea="true" />
-            </div>
+          <div class="col-xs-12 col-md-8 col-xl-5 mt-3">
+            <SakaiInputLabelled title="Description" textarea="true" />
           </div>
-        </div>
-        <div class="col-sm-12 col-xl-4">
-          <div class="row mt-3 align-items-md-end">
-            <div class="col">
-              <SakaiInputLabelled title="Preupload presentation" />
-            </div>
-            <div class="col-sm-12 col-md-auto mt-3">
-              <SakaiButton text="Add" class="w-100" />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <SakaiInputLabelled
-                title="Video conferencing service"
-                select="true"
-                :items="confServ"
-                value="zoom"
-              />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="d-flex">
-                <SakaiInput type="checkbox" />
-                <label class="ms-2" for="input">Record Meeting</label>
+          <div class="col-xs-12 col-md-4 col-xl-3">
+            <div class="row mt-3 align-items-md-end">
+              <div class="col">
+                <SakaiInputLabelled title="Preupload presentation" />
               </div>
-              <div class="d-flex">
-                <SakaiInput type="checkbox" />
-                <label class="ms-2" for="input">Disable Chat</label>
+              <div class="col-sm-12 col-md-auto mt-3">
+                <SakaiButton text="Add" class="w-100" />
               </div>
-              <div class="d-flex">
-                <SakaiInput type="checkbox" />
-                <label class="ms-2" for="input">Wait For Moderator</label>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <SakaiInputLabelled
+                  title="Video conferencing service"
+                  select="true"
+                  :items="confServ"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <div class="d-flex">
+                  <SakaiInput type="checkbox" />
+                  <label class="ms-2" for="input">Record Meeting</label>
+                </div>
+                <div class="d-flex">
+                  <SakaiInput type="checkbox" />
+                  <label class="ms-2" for="input">Disable Chat</label>
+                </div>
+                <div class="d-flex">
+                  <SakaiInput type="checkbox" />
+                  <label class="ms-2" for="input">Wait For Moderator</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="2. Participants">
-        <div class="row">
-          <div class="col-sm-12 col-xl-7">
-            <div class="row align-items-md-end">
-              <div class="col">
-                <SakaiInputLabelled
-                  title="Participant Type"
-                  select="true"
-                  :items="partType"
-                />
-              </div>
-              <div class="col-sm-12 col-md-auto mt-3">
-                <SakaiButton text="Apply" class="w-100" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 col-xl-7">
-            <div class="row align-items-md-end">
-              <div class="col">
-                <SakaiParticipantsList
-                  :participants="participants"
-                  @select="createRoom"
-                  class="mt-4"
-                />
+        <div class="pb-4">
+          <div class="row">
+            <div class="col-xs-12 col-md-4 col-xl-3">
+              <div class="row align-items-md-end">
+                <div class="col">
+                  <SakaiInputLabelled
+                    title="Participant Type"
+                    select="true"
+                    :items="partType"
+                  />
+                </div>
+                <div class="col-sm-12 col-md-auto mt-3">
+                  <SakaiButton text="Apply" class="w-100" />
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-xl-5">
-            <sakai-selected-participants
-              v-if="selectedParticipants.length > 0"
-              :maxUsers="8"
-              title="Room 1"
-              :users="selectedParticipants"
-            />
+          <div class="row">
+            <div class="col-sm-12 col-xl-7">
+              <div class="row align-items-md-end">
+                <div class="col">
+                  <SakaiParticipantsList
+                    :participants="participants"
+                    @select="createRoom"
+                    class="mt-4"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-xl-5">
+              <sakai-selected-participants
+                v-if="selectedParticipants.length > 0"
+                :maxUsers="8"
+                title="Room 1"
+                :users="selectedParticipants"
+              />
+            </div>
           </div>
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="3. Availability">
-        <div class="col-sm-12 col-xl-3">
-          <div class="row align-items-md-end">
+        <div class="col-xs-12 col-md-4 col-xl-3 pb-4">
+          <div class="row align-items-md-end mb-3">
             <div class="col">
-              <sakai-input-labelled title="Open Date" type="date" />
+              <SakaiInputLabelled title="Open Date" type="date" />
             </div>
           </div>
-          <div class="row align-items-md-end">
+          <div class="row align-items-md-end mb-3">
             <div class="col">
-              <sakai-input-labelled title="Closed Date" type="date" />
+              <SakaiInputLabelled title="Closed Date" type="date" />
             </div>
           </div>
-          <div class="row align-items-md-end">
+          <div class="row align-items-md-end mb-3">
             <div class="col">
               <SakaiInputLabelled
-                title="Calendar Service"
+                title="Save to Calendar"
                 select="true"
                 value="calendar_google"
                 :items="calendars"
@@ -127,7 +124,7 @@
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="4. Notifications">
-        <div class="col-sm-12 col-xl-7">
+        <div class="col-sm-12 col-xl-7 pb-4">
           <div
             class="d-flex flex-column gap-3 mb-3 align-items-md-end flex-md-row"
             v-for="notification in notifications"
@@ -188,9 +185,20 @@
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="5. Meeting Add-ons">
-        Some Meeting Add-ons Settings
+        <div class="pb-4">
+          <div class="d-flex">
+            <SakaiInput type="checkbox" />
+            <label class="ms-2" for="input">Include Whiteboard</label>
+          </div>
+          <SakaiButton text="Add Poll" :primary="true" class="mt-3" />
+        </div>
       </sakai-accordion-item>
     </sakai-accordion>
+    <div class="d-flex mt-5">
+      <SakaiButton text="Save" :primary="true" class="me-2" />
+      <SakaiButton text="Save as Template" class="me-2" />
+      <SakaiButton text="Cancel" />
+    </div>
   </div>
 </template>
 
