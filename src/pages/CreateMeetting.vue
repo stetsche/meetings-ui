@@ -1,17 +1,5 @@
 <template>
-  <div class="p-4">
-    <div class="d-flex">
-      <SakaiButton
-        id="themeswitch"
-        class="ms-auto mb-2"
-        @click="switchtheme()"
-        text=""
-      >
-        <template #prepend>
-          <i class="bi bi-moon-fill"></i>
-        </template>
-      </SakaiButton>
-    </div>
+  <div>
     <sakai-accordion>
       <sakai-accordion-item title="1. Meeting Information" :open="true">
         <div class="pb-4">
@@ -195,20 +183,14 @@
       </sakai-accordion-item>
     </sakai-accordion>
     <div class="d-flex mt-5">
-      <SakaiButton text="Save" :primary="true" class="me-2" />
-      <SakaiButton text="Save as Template" class="me-2" />
-      <SakaiButton text="Cancel" />
+      <router-link to="/">
+        <SakaiButton text="Save" :primary="true" class="me-2" />
+        <SakaiButton text="Save as Template" class="me-2" />
+        <SakaiButton text="Cancel"
+      /></router-link>
     </div>
   </div>
 </template>
-
-<style>
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css";
-@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css";
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../assets/sakai-colors.css";
-@import "../assets/page.css";
-</style>
 
 <script>
 import SakaiAccordionItem from "../components/sakai-accordion-item.vue";
@@ -217,8 +199,6 @@ import SakaiInputLabelled from "../components/sakai-input-labelled.vue";
 import SakaiButton from "../components/sakai-button.vue";
 import SakaiInput from "../components/sakai-input.vue";
 import SakaiParticipantsList from "../components/sakai-participants-list.vue";
-// eslint-disable-next-line
-import toggletheme from "../assets/toggletheme.js";
 import SakaiSelectedParticipants from "../components/sakai-selected-participants.vue";
 import SakaiIcon from "../components/sakai-icon.vue";
 export default {
@@ -340,9 +320,6 @@ export default {
     },
   },
   methods: {
-    switchtheme: function () {
-      toggletheme();
-    },
     createRoom(participants) {
       this.$set(this, "selectedParticipants", participants);
     },
@@ -368,3 +345,4 @@ export default {
   },
 };
 </script>
+<style></style>

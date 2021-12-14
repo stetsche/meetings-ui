@@ -2,9 +2,11 @@ body {
   background-color: var(--tool-background-color);
   color: var(--sakai-text-color-1);
 }
-a {
+a,
+a.sakai-link {
   color: var(--link-color);
 }
-a:hover {
+a:hover,
+a.sakai-link:hover {
   color: var(--link-hover-color);
 }
