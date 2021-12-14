@@ -108,11 +108,27 @@ export default {
   width: 100%;
 }
 input[type="checkbox"] {
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 3px;
   background-color: var(--sakai-background-color-1);
   border: 1px solid var(--sakai-border-color);
 }
-input[type="date"]::-webkit-inner-spin-button {
-  background-color: greenyellow;
+input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 2 12 12'%3E%3Cpath fill='white' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3E%3C/svg%3E");
+  background-color: var(--sakai-color-blue--darker-3);
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: none;
+  cursor: pointer;
+  position: absolute;
+  height: auto;
+  width: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 .search-icon {
   padding: 0 0 0 8px;
