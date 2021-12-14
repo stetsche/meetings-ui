@@ -41,7 +41,14 @@
           </div>
         </div>
       </div>
-      <a href="#">View Description</a>
+      <sakai-modal title="Description">
+        <template #activator>
+          <a v-if="description" class="sakai-link" tabindex="0" role="link"
+            >View Description</a
+          >
+        </template>
+        <template #body>{{ description }}</template>
+      </sakai-modal>
       <div v-if="participants.length > 0" class="d-flex gap-1 my-2">
         <sakai-avatar
           v-for="participant in shownParticipants"
@@ -51,7 +58,6 @@
           :userName="participant.name"
           :size="avatarHeight"
         />
-        <SakaiDropdown />
       </div>
     </div>
     <div class="card-body p-0 d-flex">
@@ -132,6 +138,7 @@ import SakaiDropdown from "./sakai-dropdown.vue";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
+import SakaiModal from "./sakai-modal.vue";
 //import locale_es from 'dayjs/locale/es';
 
 dayjs.extend(relativeTime);
@@ -143,6 +150,7 @@ export default {
     SakaiIcon,
     SakaiButton,
     SakaiDropdown,
+    SakaiModal,
   },
   data() {
     return {
@@ -155,6 +163,7 @@ export default {
   props: {
     title: { type: String, default: undefined },
     contextTitle: { type: String, default: undefined },
+    description: { type: String, default: undefined },
     live: { type: Boolean, default: false },
     maxAvatars: {
       default: 5,

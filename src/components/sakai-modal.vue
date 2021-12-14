@@ -15,15 +15,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">{{ title }}</h5>
-            <button
-              type="button"
-              class="btn-close"
+            <sakai-button
               data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+              text="Close"
+              :textHidden="true"
+              :clear="true"
+              :circle="true"
+            >
+              <template #append>
+                <sakai-icon iconkey="close" />
+              </template>
+            </sakai-button>
           </div>
-          <div class="modal-body">{{ body }}</div>
-          <div class="modal-footer">
+          <div v-if="$slots.body" class="modal-body">
+            <slot name="body"></slot>
+          </div>
+          <div v-if="$slots.footer" class="modal-footer">
             <slot name="footer"> </slot>
           </div>
         </div>
@@ -33,26 +40,29 @@
 </template>
 
 <script>
+// eslint-disable-next-line
 import { Modal } from "bootstrap";
+import SakaiButton from "./sakai-button.vue";
+import SakaiIcon from "./sakai-icon.vue";
 export default {
+  components: { SakaiButton, SakaiIcon },
   props: {
     title: {
       type: String,
       default: "Modal title",
     },
-    body: {
-      type: String,
-      default: "",
-    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.modal-content {
+  background-color: var(--sakai-background-color-1);
+}
 .modal-header {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 .modal-footer {
-  border-top: none;
+  border-top: none !important;
 }
 </style>

@@ -30,6 +30,7 @@ const icons_fontawsome = {
 const icons_bootstrap = {
   attachment: "bi-paperclip",
   chat: "bi-chat-right-text",
+  close: "bi-x-lg",
   live: "bi-record-circle",
   play: "bi-play-circle",
   presentation: "bi-easel",

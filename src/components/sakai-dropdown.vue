@@ -1,9 +1,9 @@
 <template>
   <div class="dropdown">
-    <div data-bs-toggle="dropdown">
+    <div data-bs-toggle="dropdown" :id="id">
       <slot name="activation"> </slot>
     </div>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" :aria-labelledby="id">
       <li
         v-for="item in items"
         :key="item.id"
@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import "/node_modules/bootstrap/js/dist/dropdown.js";
+import "/node_modules/bootstrap/js/src/dropdown.js";
+import { v4 as uuid } from "uuid";
 import SakaiIcon from "./sakai-icon.vue";
 export default {
   components: {
@@ -52,9 +53,9 @@ export default {
   data() {
     return {
       selectedId: null,
+      id: "drop",
     };
   },
-
   methods: {
     select(itemId) {
       this.selectedId = itemId;
@@ -67,6 +68,9 @@ export default {
         document.getElementById('wrapper').classList.remove('overflow');
       }
     }*/
+  },
+  created: function () {
+    this.id += uuid().substring(8, 13); //random id '-34F4'
   },
 };
 </script>

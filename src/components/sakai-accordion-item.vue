@@ -75,9 +75,17 @@ export default {
     };
   },
   props: {
-    title: { Type: String, default: "" },
-    open: { Type: Boolean, default: false },
-    funny: { Type: Boolean, default: false },
+    title: {
+      Type: String,
+      default: "Please define heading with the title prop",
+    },
+    open: {
+      Type: [String, Boolean],
+      default: false,
+      validator: function (value) {
+        return [true, "true", false, "false"].indexOf(value) > -1;
+      },
+    },
   },
   computed: {
     showsOpen: function () {
