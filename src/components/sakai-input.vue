@@ -18,19 +18,19 @@
     />
 
     <slot name="append">
-      <sakai-icon
+      <!-- <sakai-icon
         v-if="type == 'date'"
         class="icon-append"
         iconkey="calendar"
-      ></sakai-icon>
+      ></sakai-icon> -->
     </slot>
   </div>
 </template>
 
 <script>
-import sakaiIcon from "./sakai-icon.vue";
+// import sakaiIcon from "./sakai-icon.vue";
 export default {
-  components: { sakaiIcon },
+  // components: { sakaiIcon },
   data() {
     return {
       internalValue: null,
@@ -111,8 +111,8 @@ input[type="checkbox"] {
   background-color: var(--sakai-background-color-1);
   border: 1px solid var(--sakai-border-color);
 }
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background-image: none;
+input[type="date"]::-webkit-inner-spin-button {
+  background-color: greenyellow;
 }
 .search-icon {
   padding: 0 0 0 8px;
