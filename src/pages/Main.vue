@@ -19,7 +19,7 @@
         class="order-3"
       >
         <template #activation>
-          <SakaiButton text="Options" class="w-100">
+          <SakaiButton text="Options" class="w-100" role="menu">
             <template #append>
               <sakai-icon
                 class="ms-1"
@@ -89,7 +89,7 @@
         <div @click="btnPress2 = !btnPress2" class="ms-auto">
           <SakaiDropdown :items="showAll">
             <template #activation>
-              <SakaiButton text="Show All" :clear="true">
+              <SakaiButton text="Show All" role="menu" :clear="true">
                 <template #append>
                   <sakai-icon
                     class="ms-1"
@@ -133,7 +133,7 @@ import SakaiInput from "../components/sakai-input.vue";
 import SakaiButton from "../components/sakai-button.vue";
 import SakaiDropdown from "../components/sakai-dropdown.vue";
 import SakaiIcon from "../components/sakai-icon.vue";
-import dbData from "../../data/db.json"
+import dbData from "../../data/db.json";
 
 // eslint-disable-next-line
 import toggletheme from "../assets/toggletheme.js";
@@ -199,15 +199,10 @@ export default {
     loadMeetingsList: function () {
       //const response = await fetch("/db.json");
       //let list = await response.json();
-      
+
       const db = JSON.parse(JSON.stringify(dbData));
-      const list = db.meetingList;      
+      const list = db.meetingList;
       this.meetingsList = [...list];
-    },
-    clearBackground() {
-      if (document.getElementById("wrapper").classList.contains("overflow")) {
-        document.getElementById("wrapper").classList.remove("overflow");
-      }
     },
     switchtheme: function () {
       toggletheme();

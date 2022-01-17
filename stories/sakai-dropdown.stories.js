@@ -12,7 +12,7 @@ const Template = (args, { argTypes }) => ({
   template: `<div @click="showMenu = !showMenu">
         <SakaiDropdown v-bind="$props">
           <template #activation>
-            <SakaiButton text="Options">
+            <SakaiButton text="Options" role="menu">
               <template #append>
                 <i class="fa" :class="showMenu ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
               </template>

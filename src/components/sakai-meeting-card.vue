@@ -8,6 +8,7 @@
             :clear="true"
             :textHidden="true"
             text="Options"
+            role="menu"
           >
             <template #prepend>
               <sakai-icon iconkey="menu_kebab" />

@@ -2,6 +2,7 @@
   <button
     type="button"
     :title="textHidden ? text : undefined"
+    :role="role"
     @click="handleClick"
     class="btn"
     :disabled="disabled"
@@ -20,6 +21,10 @@ export default {
     text: {
       type: String,
       default: "Button",
+    },
+    role: {
+      type: String,
+      default: "button",
     },
     clear: {
       type: Boolean,

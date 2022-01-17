@@ -4,14 +4,15 @@
       <slot name="activation"> </slot>
     </div>
     <ul class="dropdown-menu" :aria-labelledby="id">
-      <li
-        v-for="item in items"
-        :key="item.id"
-        @click="select(item.id)"
-        class="dropdown-item"
-      >
-        <sakai-icon :iconkey="item.icon" class="iconWrap" :class="item.icon" />
-        {{ item.string }}
+      <li v-for="item in items" :key="item.id" @click="select(item.id)">
+        <a class="dropdown-item" href="#">
+          <sakai-icon
+            :iconkey="item.icon"
+            class="iconWrap"
+            :class="item.icon"
+          />
+          {{ item.string }}
+        </a>
       </li>
     </ul>
   </div>
@@ -61,13 +62,6 @@ export default {
       this.selectedId = itemId;
       window.location.href = this.items[itemId].url;
     },
-    /*    dimBackground() {
-      if (!document.getElementById('wrapper').classList.contains('overflow')){
-        document.getElementById('wrapper').classList.add('overflow');        
-      } else {
-        document.getElementById('wrapper').classList.remove('overflow');
-      }
-    }*/
   },
   created: function () {
     this.id += uuid().substring(8, 13); //random id '-34F4'
