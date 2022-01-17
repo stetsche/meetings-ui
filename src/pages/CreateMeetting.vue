@@ -183,11 +183,15 @@
       </sakai-accordion-item>
     </sakai-accordion>
     <div class="d-flex mt-5">
-      <router-link to="/">
+      <router-link to="/meetings-ui">
         <SakaiButton text="Save" :primary="true" class="me-2" />
+      </router-link>
+      <router-link to="/meetings-ui">
         <SakaiButton text="Save as Template" class="me-2" />
-        <SakaiButton text="Cancel"
-      /></router-link>
+      </router-link>
+      <router-link to="/meetings-ui">
+        <SakaiButton text="Cancel"/>
+      </router-link>
     </div>
   </div>
 </template>

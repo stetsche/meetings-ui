@@ -5,8 +5,8 @@ import Settings from "./pages/CreateMeetting.vue";
 import App from "./App.vue";
 
 const routes = [
-  { path: "/", name: "Main", component: Main },
-  { path: "/settings", name: "Settings", component: Settings },
+  { path: "/meetings-ui/", name: "Main", component: Main },
+  { path: "/meetings-ui/settings", name: "Settings", component: Settings },
 ];
 const router = new VueRouter({ mode: "history", routes: routes });
 

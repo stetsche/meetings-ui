@@ -13,7 +13,8 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build-storybook && cp ./public ./storybook-static",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "gh-pages -d storybook-static",
+    "deploy-meetings-ui": "gh-pages -d dist"
   },
   "main": "index.js",
   "dependencies": {
@@ -28,9 +29,9 @@
     "@babel/core": "^7.15.8",
     "@storybook/addon-a11y": "^6.4.9",
     "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.13",
     "@storybook/addon-links": "^6.3.12",
-    "@storybook/vue": "^6.4.9",
+    "@storybook/vue": "^6.4.13",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

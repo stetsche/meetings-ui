@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
-      <router-link to="/settings" class="order-1 me-md-auto">
+      <router-link to="/meetings-ui/settings" class="order-1 me-md-auto">
         <SakaiButton text="Create New Meeting" class="w-100">
           <template #prepend>
             <sakai-icon class="me-1" iconkey="plus" />
@@ -133,6 +133,7 @@ import SakaiInput from "../components/sakai-input.vue";
 import SakaiButton from "../components/sakai-button.vue";
 import SakaiDropdown from "../components/sakai-dropdown.vue";
 import SakaiIcon from "../components/sakai-icon.vue";
+import dbData from "../../data/db.json"
 
 // eslint-disable-next-line
 import toggletheme from "../assets/toggletheme.js";
@@ -195,10 +196,13 @@ export default {
     },
   },
   methods: {
-    loadMeetingsList: async function () {
-      const response = await fetch("http://127.0.0.1:3001/meetingList");
-      const list = await response.json();
-      this.meetingsList = list;
+    loadMeetingsList: function () {
+      //const response = await fetch("/db.json");
+      //let list = await response.json();
+      
+      const db = JSON.parse(JSON.stringify(dbData));
+      const list = db.meetingList;      
+      this.meetingsList = [...list];
     },
     clearBackground() {
       if (document.getElementById("wrapper").classList.contains("overflow")) {
