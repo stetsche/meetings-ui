@@ -1,14 +1,22 @@
 <template>
   <div>
     <div class="d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
-      <router-link to="/meetings-ui/settings" class="order-1 me-md-auto">
+      <router-link
+        to="/meetings-ui/settings"
+        class="order-1 me-md-auto"
+        tabIndex="-1"
+      >
         <SakaiButton text="Create New Meeting" class="w-100">
           <template #prepend>
             <sakai-icon class="me-1" iconkey="plus" />
           </template>
         </SakaiButton>
       </router-link>
-      <SakaiInput class="order-0 order-md-2 w-auto" style="min-width: 20%">
+      <SakaiInput
+        type="search"
+        class="order-0 order-md-2 w-auto"
+        style="min-width: 20%"
+      >
         <template #prepend>
           <sakai-icon class="search-icon" iconkey="search" />
         </template>

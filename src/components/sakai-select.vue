@@ -69,4 +69,7 @@ export default {
   width: 100%;
   height: 2.25rem;
 }
+.form-select:focus {
+  outline: 3px solid var(--focus-outline-color);
+}
 </style>

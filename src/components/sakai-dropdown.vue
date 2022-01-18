@@ -75,10 +75,6 @@ export default {
   width: 16.5px;
   margin-right: 6px;
 }
-.dropdown-item:hover {
-  background-color: var(--tool-menu-item-hover-background-color) !important;
-  cursor: pointer;
-}
 .dropdown-menu {
   min-width: 0 !important;
   background-color: var(--tool-menu-background-color) !important;
@@ -88,6 +84,13 @@ export default {
 .dropdown-item {
   padding: 0.35rem 1rem !important;
   color: var(--tool-menu-item-text-color) !important;
+}
+.dropdown-item:hover {
+  background-color: var(--tool-menu-item-hover-background-color) !important;
+  cursor: pointer;
+}
+.dropdown-item:focus {
+  outline: 3px solid var(--focus-outline-color);
 }
 @media (max-width: 600px) {
   .dropdown-menu {

@@ -61,7 +61,6 @@ export default {
   border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
   padding: 0.375rem;
-  outline: none;
   width: 100%;
 }
 </style>

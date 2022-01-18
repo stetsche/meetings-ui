@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      { 'sakai-wrapper': type != 'checkbox' },
+      { 'sakai-wrapper': type == 'search' },
       { 'sakai-disabled': disabled },
       { 'sakai-invalid': invalid },
     ]"
@@ -12,7 +12,6 @@
       :id="id"
       :name="name"
       :type="type"
-      :class="{ 'sakai-input': type != 'checkbox' }"
       :disabled="disabled"
       :placeholder="placeholder"
     />
@@ -99,10 +98,22 @@ export default {
   height: 2.25rem;
   width: 100%;
 }
-.sakai-input {
+.sakai-wrapper:focus-within {
+  outline: 3px solid var(--focus-outline-color);
+}
+input {
+  background: var(--sakai-background-color-1);
   color: var(--sakai-text-color-1);
-  border: 0;
+  border: 1px solid var(--sakai-border-color);
+  border-radius: 5px;
+  box-shadow: none;
+  padding: 0.375rem;
+  width: 100%;
+}
+input[type="search"] {
+  color: var(--sakai-text-color-1);
   background: transparent;
+  border: none;
   outline: none;
   padding: 0.375rem;
   width: 100%;

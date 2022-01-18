@@ -6,7 +6,6 @@ a,
 a.sakai-link {
   color: var(--link-color);
 }
-a:hover,
-a.sakai-link:hover {
-  color: var(--link-hover-color);
+a.sakai-link:focus {
+  outline: 3px solid var(--focus-outline-color);
 }

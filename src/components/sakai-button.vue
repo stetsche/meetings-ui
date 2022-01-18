@@ -70,46 +70,43 @@ export default {
   background-color: var(--button-background);
   color: var(--button-text-color);
   border: 1px solid var(--button-border-color);
-  box-shadow: var(--button-shadow);
   padding: 0.3rem 0.7rem;
   height: 100%;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-text-color);
+  border: 1px solid var(--button-hover-border-color);
+}
+.btn:focus {
+  outline: 3px solid var(--focus-outline-color);
+}
+.btn:active {
+  background-color: var(--button-active-background);
+  color: var(--button-active-text-color);
+  border: 1px solid var(--button-active-border-color);
 }
 .btn-primary {
   background-color: var(--button-primary-background);
   color: var(--button-primary-text-color);
   border: 1px solid var(--button-primary-border-color);
-  box-shadow: var(--button-primary-shadow);
-}
-.btn:hover {
-  background-color: var(--button-hover-background);
-  color: var(--button-hover-text-color);
-  border: 1px solid var(--button-hover-border-color);
-  box-shadow: var(--button-hover-shadow);
 }
 .btn-primary:hover {
   background-color: var(--button-primary-hover-background);
   color: var(--button-primary-hover-text-color);
   border: 1px solid var(--button-primary-hover-border-color);
-  box-shadow: var(--button-hover-primary-shadow);
-}
-.btn:focus {
-  background-color: var(--button-active-background);
-  color: var(--button-active-text-color);
-  border: 1px solid var(--button-active-border-color);
-  box-shadow: var(--button-active-shadow);
 }
 .btn-primary:focus {
   background-color: var(--button-primary-active-background);
   color: var(--button-primary-active-text-color);
   border: 1px solid var(--button-primary-active-border-color);
-  box-shadow: var(--button-primary-active-shadow);
 }
 .btn:disabled,
 .btn-primary:disabled {
   background-color: var(--button-disabled-background);
   color: var(--button-disabled-text-color);
   border: 1px solid var(--button-disabled-border-color);
-  box-shadow: var(--button-disabled-shadow);
 }
 .clear {
   background-color: transparent;
