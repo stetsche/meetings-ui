@@ -6,7 +6,7 @@
     @click="handleClick"
     class="btn"
     :disabled="disabled"
-    :class="{ clear, circle, 'btn-primary': primary }"
+    :class="{ clear, circle, link, 'btn-primary': primary }"
   >
     <slot name="prepend" />
     <span v-if="!textHidden && text.length > 0">{{ text }}</span>
@@ -31,6 +31,10 @@ export default {
       default: false,
     },
     circle: {
+      type: Boolean,
+      default: false,
+    },
+    link: {
       type: Boolean,
       default: false,
     },
@@ -108,16 +112,29 @@ export default {
   color: var(--button-disabled-text-color);
   border: 1px solid var(--button-disabled-border-color);
 }
-.clear {
-  background-color: transparent;
-  color: var(--link-color);
-  border: 1px solid transparent;
-}
 .circle {
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1.5rem;
   padding: 0;
+}
+.clear,
+.link,
+.link:hover,
+.link:focus {
+  background-color: transparent;
+  color: var(--link-color);
+  border: 1px solid transparent;
+}
+.link {
+  padding: 0 0 0.2rem 0;
+}
+.link:hover,
+.link:focus {
+  text-decoration: underline;
+}
+.link:active {
+  color: var(--link-active-color) !important;
 }
 </style>

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div data-bs-toggle="modal" data-bs-target="#modal">
+    <div
+      data-bs-toggle="modal"
+      data-bs-target="#modal"
+      style="width: fit-content"
+    >
       <slot name="activator"> </slot>
     </div>
 

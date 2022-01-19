@@ -44,9 +44,12 @@
       </div>
       <sakai-modal title="Description">
         <template #activator>
-          <a v-if="description" class="sakai-link" tabindex="0" role="link"
-            >View Description</a
-          >
+          <sakai-button
+            v-if="description"
+            text="View Description"
+            link="true"
+            tabindex="0"
+          ></sakai-button>
         </template>
         <template #body>{{ description }}</template>
       </sakai-modal>
