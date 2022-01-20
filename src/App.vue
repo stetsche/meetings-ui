@@ -7,7 +7,8 @@
         id="themeswitch"
         class="ms-auto"
         @click="switchtheme()"
-        text=""
+        text="Switch theme"
+        :textHidden="true"
       >
         <template #prepend>
           <i class="bi bi-moon-fill"></i>
@@ -18,7 +19,7 @@
           <sakai-icon class="me-1" iconkey="question" />
         </template>
       </SakaiButton>
-      <SakaiButton text="" class="">
+      <SakaiButton text="Maximize" :textHidden="true">
         <template #prepend>
           <sakai-icon iconkey="maximize" />
         </template>
