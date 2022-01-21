@@ -1,29 +1,32 @@
 <template>
-  <div
-    :class="[
-      { 'sakai-wrapper': type == 'search' },
-      { 'sakai-disabled': disabled },
-      { 'sakai-invalid': invalid },
-    ]"
-  >
-    <slot name="prepend" />
-    <input
-      v-model="internalValue"
-      :id="id"
-      :name="name"
-      :type="type"
-      :disabled="disabled"
-      :placeholder="placeholder"
-    />
+  <form :action="formAction">
+    <div
+      :class="[
+        { 'sakai-wrapper': type == 'search' },
+        { 'sakai-disabled': disabled },
+        { 'sakai-invalid': invalid },
+      ]"
+    >
+      <slot name="prepend" />
+      <input
+        v-model="internalValue"
+        :id="id"
+        :name="name"
+        :type="type"
+        :role="type == 'search' ? 'search' : null"
+        :disabled="disabled"
+        :placeholder="placeholder"
+      />
 
-    <slot name="append">
-      <!-- <sakai-icon
-        v-if="type == 'date'"
-        class="icon-append"
-        iconkey="calendar"
-      ></sakai-icon> -->
-    </slot>
-  </div>
+      <slot name="append">
+        <!-- <sakai-icon
+          v-if="type == 'date'"
+          class="icon-append"
+          iconkey="calendar"
+        ></sakai-icon> -->
+      </slot>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -48,6 +51,10 @@ export default {
     type: {
       type: String,
       default: "text",
+    },
+    formAction: {
+      type: String,
+      default: null,
     },
     name: {
       type: String,

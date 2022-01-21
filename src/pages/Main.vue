@@ -14,6 +14,7 @@
       </router-link>
       <SakaiInput
         type="search"
+        placeholder="Search for meetings"
         class="order-0 order-md-2 w-auto"
         style="min-width: 20%"
       >
