@@ -8,13 +8,7 @@
       :value="value"
       :id="inputId"
     />
-    <SakaiInput
-      v-else
-      :id="inputId"
-      :type="type"
-      :value="value"
-      :aria-label="title"
-    >
+    <SakaiInput v-else :id="inputId" :type="type" :value="value">
       <template #prepend>
         <slot name="prepend" />
       </template>
