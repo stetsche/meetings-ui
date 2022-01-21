@@ -183,15 +183,18 @@
       </sakai-accordion-item>
     </sakai-accordion>
     <div class="d-flex mt-5">
-      <router-link to="/meetings-ui" tabIndex="-1">
-        <SakaiButton text="Save" :primary="true" class="me-2" />
-      </router-link>
-      <router-link to="/meetings-ui" tabIndex="-1">
-        <SakaiButton text="Save as Template" class="me-2" />
-      </router-link>
-      <router-link to="/meetings-ui" tabIndex="-1">
-        <SakaiButton text="Cancel" />
-      </router-link>
+      <SakaiButton
+        text="Save"
+        @click="handleSave"
+        :primary="true"
+        class="me-2"
+      />
+      <SakaiButton
+        text="Save as Template"
+        @click="handleSaveTemplate"
+        class="me-2"
+      />
+      <SakaiButton text="Cancel" @click="handleCancel" />
     </div>
   </div>
 </template>
@@ -324,6 +327,15 @@ export default {
     },
   },
   methods: {
+    handleSave: function () {
+      this.$router.push({ path: "/meetings-ui" });
+    },
+    handleSaveTemplate: function () {
+      this.$router.push({ path: "/meetings-ui" });
+    },
+    handleCancel: function () {
+      this.$router.push({ path: "/meetings-ui" });
+    },
     createRoom(participants) {
       this.$set(this, "selectedParticipants", participants);
     },

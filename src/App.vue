@@ -2,7 +2,9 @@
   <div id="app" class="p-3">
     <div class="d-flex 1 mb-2 gap-1 div-heigth">
       <sakai-icon iconkey="videocamera" />
-      <h5>MEETINGS</h5>
+      <router-link to="/meetings-ui" title="Tool Home" class="tool-heading"
+        >MEETINGS</router-link
+      >
       <SakaiButton
         id="themeswitch"
         class="ms-auto"

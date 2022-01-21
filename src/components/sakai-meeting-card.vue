@@ -1,21 +1,6 @@
 <template>
   <div class="card" aria-describedby="title">
     <div class="card-header h-100">
-      <sakai-dropdown :items="menuitems" class="card-menu">
-        <template #activation>
-          <sakai-button
-            :circle="true"
-            :clear="true"
-            :textHidden="true"
-            text="Options"
-            role="menu"
-          >
-            <template #prepend>
-              <sakai-icon iconkey="menu_kebab" />
-            </template>
-          </sakai-button>
-        </template>
-      </sakai-dropdown>
       <div class="mt-1 mb-2 contextTitle">{{ contextTitle }}</div>
       <h2 id="title" class="card-title" :title="title">{{ title }}</h2>
       <div class="d-flex flex-row flex-wrap mb-2">
@@ -30,6 +15,7 @@
           class="d-flex flex-row flex-nowrap"
         >
           <div>
+            <span class="sr-only">{{ `${i18n.status} ` }}</span>
             <span>{{ statusText }}</span>
           </div>
           <div class="mx-1">
@@ -53,7 +39,7 @@
         </template>
         <template #body>{{ description }}</template>
       </sakai-modal>
-      <div v-if="participants.length > 0" class="d-flex gap-1 my-2">
+      <div v-if="false" class="d-flex gap-1 my-2">
         <sakai-avatar
           v-for="participant in shownParticipants"
           :key="participant.userid"
@@ -63,6 +49,11 @@
           :size="avatarHeight"
         />
       </div>
+      <sakai-avatar-list
+        :userlist="shownParticipants"
+        :avatarsize="avatarHeight"
+        :length="maxAvatars"
+      ></sakai-avatar-list>
     </div>
     <div class="card-body p-0 d-flex">
       <div class="action-list d-flex">
@@ -91,6 +82,21 @@
         </sakai-button>
       </div>
     </div>
+    <sakai-dropdown :items="menuitems" class="card-menu">
+      <template #activation>
+        <sakai-button
+          :circle="true"
+          :clear="true"
+          :textHidden="true"
+          text="Options"
+          role="menu"
+        >
+          <template #prepend>
+            <sakai-icon iconkey="menu_kebab" />
+          </template>
+        </sakai-button>
+      </template>
+    </sakai-dropdown>
   </div>
 </template>
 
@@ -121,6 +127,7 @@
 .card-menu {
   position: absolute;
   right: 0.5rem;
+  top: 0.5rem;
 }
 
 h2 {
@@ -135,6 +142,7 @@ h2 {
 
 <script>
 import SakaiAvatar from "./sakai-avatar.vue";
+import SakaiAvatarList from "./sakai-avatar-list.vue";
 import SakaiIcon from "./sakai-icon.vue";
 import SakaiButton from "./sakai-button.vue";
 import SakaiDropdown from "./sakai-dropdown.vue";
@@ -151,6 +159,7 @@ dayjs.extend(localizedFormat);
 export default {
   components: {
     SakaiAvatar,
+    SakaiAvatarList,
     SakaiIcon,
     SakaiButton,
     SakaiDropdown,
@@ -162,6 +171,9 @@ export default {
       avatarHeight: 40,
       liveIconColor: "var(--sakai-record-color)",
       otherIconColor: "var(--sakai-secondary-color-1)",
+      i18n: {
+        status: "Status",
+      },
     };
   },
   props: {
