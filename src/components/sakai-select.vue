@@ -2,7 +2,6 @@
   <select
     class="form-select"
     :name="name"
-    id="slct"
     :value="value"
     @change="$emit('change', $event.target.value)"
   >
