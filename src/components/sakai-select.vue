@@ -2,11 +2,11 @@
   <select
     class="form-select"
     :name="name"
+    :id="id"
     :value="value"
     @change="$emit('change', $event.target.value)"
   >
     <option v-for="item in items" :key="item.value" :value="item.value">
-      <!-- <option v-for="item in items" :key="item['item-key']" :value="item[value]"> -->
       {{ item.string }}
     </option>
   </select>
@@ -17,6 +17,10 @@ import "/node_modules/bootstrap/js/dist/dropdown.js";
 export default {
   components: {},
   props: {
+    id: {
+      type: String,
+      default: null,
+    },
     items: {
       type: Array,
       default: () => [

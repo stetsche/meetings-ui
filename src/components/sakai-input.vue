@@ -1,32 +1,31 @@
 <template>
-  <form :action="formAction">
-    <div
-      :class="[
-        { 'sakai-wrapper': type == 'search' },
-        { 'sakai-disabled': disabled },
-        { 'sakai-invalid': invalid },
-      ]"
-    >
-      <slot name="prepend" />
-      <input
-        v-model="internalValue"
-        :id="id"
-        :name="name"
-        :type="type"
-        :role="type == 'search' ? 'search' : null"
-        :disabled="disabled"
-        :placeholder="placeholder"
-      />
+  <div
+    :class="[
+      { 'sakai-wrapper': type == 'search' },
+      { 'sakai-disabled': disabled },
+      { 'sakai-invalid': invalid },
+      null,
+    ]"
+  >
+    <slot name="prepend" />
+    <input
+      v-model="internalValue"
+      :id="id"
+      :name="name"
+      :type="type"
+      :role="type == 'search' ? 'search' : null"
+      :disabled="disabled"
+      :placeholder="placeholder"
+    />
 
-      <slot name="append">
-        <!-- <sakai-icon
+    <slot name="append">
+      <!-- <sakai-icon
           v-if="type == 'date'"
           class="icon-append"
           iconkey="calendar"
         ></sakai-icon> -->
-      </slot>
-    </div>
-  </form>
+    </slot>
+  </div>
 </template>
 
 <script>
@@ -46,15 +45,11 @@ export default {
   props: {
     id: {
       type: String,
-      default: "input",
+      default: null,
     },
     type: {
       type: String,
       default: "text",
-    },
-    formAction: {
-      type: String,
-      default: null,
     },
     name: {
       type: String,
@@ -70,7 +65,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "",
+      default: null,
     },
     value: {
       type: [String, Boolean],

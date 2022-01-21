@@ -1,11 +1,20 @@
 <template>
   <div>
-    <div>
-      <label class="mb-1" for="input">{{ title }}</label>
-    </div>
-    <textarea v-if="textarea" class="sakai-area" rows="10" />
-    <SakaiSelect v-else-if="select" :items="items" :value="value" />
-    <SakaiInput v-else :type="type" :value="value">
+    <label class="mb-1" :for="inputId">{{ title }}</label>
+    <textarea v-if="textarea" :id="inputId" class="sakai-area" rows="10" />
+    <SakaiSelect
+      v-else-if="select"
+      :items="items"
+      :value="value"
+      :id="inputId"
+    />
+    <SakaiInput
+      v-else
+      :id="inputId"
+      :type="type"
+      :value="value"
+      :aria-label="title"
+    >
       <template #prepend>
         <slot name="prepend" />
       </template>
@@ -17,9 +26,15 @@
 </template>
 
 <script>
+import { v4 as uuid } from "uuid";
 import SakaiInput from "./sakai-input.vue";
 import SakaiSelect from "./sakai-select.vue";
 export default {
+  data() {
+    return {
+      inputId: "input",
+    };
+  },
   components: {
     SakaiInput,
     SakaiSelect,
@@ -48,6 +63,9 @@ export default {
       type: [String, Boolean, Number],
       default: undefined,
     },
+  },
+  created: function () {
+    this.inputId += uuid().substring(8, 13);
   },
 };
 </script>
