@@ -76,6 +76,6 @@ export default {
   width: 100%;
 }
 .sakai-area:focus {
-  outline: 2px solid var(--sakai-text-color-1);
+  outline: 3px solid var(--focus-outline-color);
 }
 </style>

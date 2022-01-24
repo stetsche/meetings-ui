@@ -99,7 +99,6 @@ export default {
   display: flex;
   min-width: 100px;
   background: var(--sakai-background-color-1);
-  color: grey;
   border: 1px solid var(--sakai-border-color);
   border-radius: 5px;
   height: 2.25rem;
@@ -107,7 +106,7 @@ export default {
 }
 .sakai-wrapper:focus-within,
 input:focus {
-  outline: 2px solid var(--sakai-text-color-1);
+  outline: 3px solid var(--focus-outline-color);
 }
 input {
   background: var(--sakai-background-color-1);
@@ -117,6 +116,9 @@ input {
   box-shadow: none;
   padding: 0.375rem;
   width: 100%;
+}
+::placeholder {
+  color: var(--sakai-text-color-dimmed);
 }
 input[type="search"] {
   color: var(--sakai-text-color-1);
