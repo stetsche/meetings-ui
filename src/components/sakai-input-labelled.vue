@@ -75,4 +75,7 @@ export default {
   padding: 0.375rem;
   width: 100%;
 }
+.sakai-area:focus {
+  outline: 2px solid var(--sakai-text-color-1);
+}
 </style>

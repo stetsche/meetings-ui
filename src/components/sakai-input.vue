@@ -79,8 +79,8 @@ export default {
     },
     arialabel: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   mounted() {
     this.internalValue = this.value;
@@ -105,8 +105,9 @@ export default {
   height: 2.25rem;
   width: 100%;
 }
-.sakai-wrapper:focus-within {
-  outline: 3px solid var(--focus-outline-color);
+.sakai-wrapper:focus-within,
+input:focus {
+  outline: 2px solid var(--sakai-text-color-1);
 }
 input {
   background: var(--sakai-background-color-1);

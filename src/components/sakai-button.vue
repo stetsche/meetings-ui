@@ -84,27 +84,30 @@ export default {
   border: 1px solid var(--button-hover-border-color);
 }
 .btn:focus {
+  box-shadow: none;
   outline: 3px solid var(--focus-outline-color);
 }
 .btn:active {
   background-color: var(--button-active-background);
-  color: var(--button-active-text-color);
   border: 1px solid var(--button-active-border-color);
+  box-shadow: none;
 }
 .btn-primary {
   background-color: var(--button-primary-background);
   color: var(--button-primary-text-color);
   border: 1px solid var(--button-primary-border-color);
 }
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: var(--button-primary-hover-background);
   color: var(--button-primary-hover-text-color);
   border: 1px solid var(--button-primary-hover-border-color);
 }
-.btn-primary:focus {
+.btn-primary:active:focus {
   background-color: var(--button-primary-active-background);
   color: var(--button-primary-active-text-color);
   border: 1px solid var(--button-primary-active-border-color);
+  box-shadow: none;
 }
 .btn:disabled,
 .btn-primary:disabled {
