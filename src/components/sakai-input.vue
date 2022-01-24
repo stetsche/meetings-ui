@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      { 'sakai-wrapper': type == 'date' },
+      'sakai-wrapper',
       { 'sakai-search': type == 'search' },
       { 'sakai-disabled': disabled },
       { 'sakai-invalid': invalid },
