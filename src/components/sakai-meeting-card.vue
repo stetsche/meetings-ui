@@ -1,5 +1,17 @@
 <template>
   <div class="card" aria-describedby="title">
+    <SakaiDropdownButton
+      :items="menuitems"
+      class="card-menu"
+      :circle="true"
+      :clear="true"
+      :textHidden="true"
+      text="Options"
+    >
+      <template #append>
+        <sakai-icon iconkey="menu_kebab" />
+      </template>
+    </SakaiDropdownButton>
     <div class="card-header h-100">
       <div class="mt-1 mb-2 contextTitle">{{ contextTitle }}</div>
       <h2 id="title" class="card-title" :title="title">{{ title }}</h2>
@@ -33,7 +45,7 @@
           <sakai-button
             v-if="description"
             text="View Description"
-            link="true"
+            :link="true"
             tabindex="0"
           ></sakai-button>
         </template>
@@ -82,21 +94,6 @@
         </sakai-button>
       </div>
     </div>
-    <sakai-dropdown :items="menuitems" class="card-menu">
-      <template #activation>
-        <sakai-button
-          :circle="true"
-          :clear="true"
-          :textHidden="true"
-          text="Options"
-          role="menu"
-        >
-          <template #prepend>
-            <sakai-icon iconkey="menu_kebab" />
-          </template>
-        </sakai-button>
-      </template>
-    </sakai-dropdown>
   </div>
 </template>
 
@@ -145,7 +142,7 @@ import SakaiAvatar from "./sakai-avatar.vue";
 import SakaiAvatarList from "./sakai-avatar-list.vue";
 import SakaiIcon from "./sakai-icon.vue";
 import SakaiButton from "./sakai-button.vue";
-import SakaiDropdown from "./sakai-dropdown.vue";
+import SakaiDropdownButton from "./sakai-dropdown-button.vue";
 
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -162,7 +159,7 @@ export default {
     SakaiAvatarList,
     SakaiIcon,
     SakaiButton,
-    SakaiDropdown,
+    SakaiDropdownButton,
     SakaiModal,
   },
   data() {

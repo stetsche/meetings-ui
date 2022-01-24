@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
+    <div class="header-menu d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
       <div class="order-1 me-md-auto">
         <SakaiButton
           text="Create New Meeting"
@@ -22,22 +22,8 @@
           <sakai-icon class="search-icon" iconkey="search" />
         </template>
       </SakaiInput>
-      <SakaiDropdown
-        :items="items"
-        @click="btnPress1 = !btnPress1"
-        class="order-3"
-      >
-        <template #activation>
-          <SakaiButton text="Options" class="w-100" role="menu">
-            <template #append>
-              <sakai-icon
-                class="ms-1"
-                :iconkey="btnPress1 ? 'chevron_up' : 'chevron_down'"
-              />
-            </template>
-          </SakaiButton>
-        </template>
-      </SakaiDropdown>
+      <SakaiDropdownButton class="order-3" :items="items" text="Options">
+      </SakaiDropdownButton>
     </div>
     <div v-if="happeningToday.length > 0">
       <div class="section-heading">
@@ -110,18 +96,7 @@
         <h1 class="mb-0" id="flush-headingThree">Past</h1>
         <div class="ms-auto">
           <div @click="btnPress2 = !btnPress2" class="ms-auto">
-            <SakaiDropdown :items="showAll">
-              <template #activation>
-                <SakaiButton text="Show All" role="menu" :clear="true">
-                  <template #append>
-                    <sakai-icon
-                      class="ms-1"
-                      :iconkey="btnPress2 ? 'chevron_up' : 'chevron_down'"
-                    />
-                  </template>
-                </SakaiButton>
-              </template>
-            </SakaiDropdown>
+            <SakaiDropdownButton :items="showAll" text="Show All" :clear="true"></SakaiDropdownButton>
           </div>
         </div>
       </div>
@@ -161,7 +136,7 @@ import dayjs from "dayjs";
 import SakaiMeetingCard from "../components/sakai-meeting-card.vue";
 import SakaiInput from "../components/sakai-input.vue";
 import SakaiButton from "../components/sakai-button.vue";
-import SakaiDropdown from "../components/sakai-dropdown.vue";
+import SakaiDropdownButton from "../components/sakai-dropdown-button.vue";
 import SakaiIcon from "../components/sakai-icon.vue";
 import dbData from "../../data/db.json";
 
@@ -173,7 +148,7 @@ export default {
     SakaiMeetingCard,
     SakaiInput,
     SakaiButton,
-    SakaiDropdown,
+    SakaiDropdownButton,
     SakaiIcon,
   },
   data() {
@@ -181,32 +156,29 @@ export default {
       meetingsList: [],
       btnPress1: false,
       btnPress2: false,
-    };
-  },
-  props: {
-    items: {
-      type: Array,
-      default: () => [
+      items: [
         {
           id: 0,
           icon: "permissions",
           string: "Permissions",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+          route: "/meetings-ui/permissions",
         },
         {
           id: 1,
           icon: "template",
           string: "Templates",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+          action: this.handleTemplates,
         },
         {
           id: 2,
           icon: "link",
           string: "Link",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
-        },
-      ],
-    },
+          url: "https://edf.global",
+        }
+      ]
+    };
+  },
+  props: {
     showAll: {
       type: Array,
       default: () => [
@@ -228,6 +200,9 @@ export default {
   methods: {
     handleCreateNewMeeting: function () {
       this.$router.push({ path: "/meetings-ui/settings" });
+    },
+    handleTemplates: function () {
+      alert("Here will be a menu to work with meeting templates")
     },
     loadMeetingsList: function () {
       //const response = await fetch("/db.json");

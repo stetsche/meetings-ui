@@ -1,11 +1,19 @@
 <template>
   <div class="dropdown">
-    <div data-bs-toggle="dropdown" :id="id">
-      <slot name="activation"> </slot>
+    <div data-bs-toggle="dropdown" ref="activationwrapper">
+      <slot name="activation"></slot>
     </div>
-    <ul class="dropdown-menu" :aria-labelledby="id">
-      <li v-for="item in items" :key="item.id" @click="select(item.id)">
-        <a class="dropdown-item" href="#">
+    <ul class="dropdown-menu" role="menu" :id="menuid">
+      <li v-for="item in items" :key="item.id">
+        <a
+          class="dropdown-item"
+          :role="getAnchorRole(item)"
+          :tabindex="!item.url ? '0' : undefined"
+          :href="item.url"
+          @click="handleClick(item)"
+          @keyup.enter="handleClick(item)"
+          @keyup.space="item.action ? handleClick(item) : undefined"
+        >
           <sakai-icon
             :iconkey="item.icon"
             class="iconWrap"
@@ -20,7 +28,6 @@
 
 <script>
 import "/node_modules/bootstrap/js/src/dropdown.js";
-import { v4 as uuid } from "uuid";
 import SakaiIcon from "./sakai-icon.vue";
 export default {
   components: {
@@ -32,39 +39,51 @@ export default {
       default: () => [
         {
           id: 0,
-          icon: "permissions",
-          string: "Permissions",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
-        },
-        {
-          id: 1,
-          icon: "template",
-          string: "Templates",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
-        },
-        {
-          id: 2,
-          icon: "link",
-          string: "Link",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
+          icon: "error",
+          string: "emty",
+          route: "/meetings-ui",
         },
       ],
     },
+    menuid: { type: String, default: undefined },
   },
   data() {
     return {
       selectedId: null,
-      id: "drop",
+      expanded: false
     };
   },
+  computed: {},
   methods: {
-    select(itemId) {
-      this.selectedId = itemId;
-      window.location.href = this.items[itemId].url;
+    getAnchorRole: function (item) {
+      if (item.action) {
+        return "button";
+      } else {
+        return "link";
+      }
+    },
+    handleClick: function (item) {
+      this.selectedId = item.id;
+      if (item.route) {
+        this.handleRoute(item.route);
+      } else if (item.action) {
+        item.action();
+      }
+    },
+    handleRoute: function (route) {
+      this.$router.push({ path: route });
+    },
+    onMutation: function (mutationsList) {
+      for(const mutation of mutationsList) {
+        if(mutation.type === 'attributes' && mutation.attributeName === 'aria-expanded') {
+          this.expanded = (mutation.target.attributes["aria-expanded"].value === 'true');
+        }
+      }
     },
   },
-  created: function () {
-    this.id += uuid().substring(8, 13); //random id '-34F4'
+  mounted: function () {
+    const observer = new MutationObserver(this.onMutation);
+    observer.observe(this.$refs.activationwrapper, { attributes: true });
   },
 };
 </script>

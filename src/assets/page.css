@@ -41,3 +41,7 @@ a.tool-heading,
   word-wrap: normal;
   white-space: nowrap;
 }
+
+.header-menu button {
+  width: 100%;
+}
