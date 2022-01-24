@@ -16,6 +16,7 @@
       :role="type == 'search' ? 'search' : null"
       :disabled="disabled"
       :placeholder="placeholder"
+      :aria-label="arialabel"
     />
 
     <slot name="append">
@@ -76,6 +77,10 @@ export default {
       type: [String, Number],
       default: undefined,
     },
+    arialabel: {
+      type: String,
+      default: undefined
+    }
   },
   mounted() {
     this.internalValue = this.value;

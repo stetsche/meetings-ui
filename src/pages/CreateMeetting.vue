@@ -113,6 +113,7 @@
       </sakai-accordion-item>
       <sakai-accordion-item title="4. Notifications">
         <div class="col-sm-12 col-xl-7 pb-4">
+          <div class="sak-banner-info" v-if="notifications.length === 0">Currently no notifications specified</div>
           <div
             class="d-flex flex-column gap-3 mb-3 align-items-md-end flex-md-row"
             v-for="notification in notifications"
@@ -127,6 +128,7 @@
             />
             <div class="d-flex flex-row gap-3 align-items-end w-100">
               <sakai-input
+                arialabel="Number of days, minits or hours"
                 v-model.number="notification.frequency.times"
                 type="number"
                 style="max-width: 3rem"
