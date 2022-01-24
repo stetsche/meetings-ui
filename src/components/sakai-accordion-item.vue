@@ -37,6 +37,9 @@
   background-color: var(--sakai-background-color-1);
   color: var(--sakai-text-color);
 }
+.accordion-button:focus{
+  outline: 3px solid var(--focus-outline-color);
+}
 .accordion-button:not(.collapsed) {
   background-color: var(--sakai-background-color-2);
   color: var(--sakai-link-color);
