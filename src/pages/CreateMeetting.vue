@@ -128,7 +128,7 @@
             />
             <div class="d-flex flex-row gap-3 align-items-end w-100">
               <sakai-input
-                arialabel="Number of days, minits or hours"
+                arialabel="Number of days, minutes or hours to notify"
                 v-model.number="notification.frequency.times"
                 type="number"
                 style="max-width: 3rem"
