@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span ref="feedback" class="sr-only" aria-live="polite">emty</span>
     <div class="header-menu d-flex flex-column flex-md-row gap-2 mb-4 div-heigth">
       <div class="order-1 me-md-auto">
         <SakaiButton
@@ -154,6 +155,7 @@ export default {
   data() {
     return {
       meetingsList: [],
+      alert:"abc",
       btnPress1: false,
       btnPress2: false,
       items: [
@@ -202,7 +204,14 @@ export default {
       this.$router.push({ path: "/meetings-ui/settings" });
     },
     handleTemplates: function () {
-      alert("Here will be a menu to work with meeting templates")
+      this.$refs.feedback.innerHTML = "Here will be a menu to work with meeting templates";
+    },
+    handleMeetingDelete: function () {
+      this.$refs.feedback.innerHTML = "Meeting deleted";
+    },
+    handleMeetingEdit: function () {
+      this.$refs.feedback.innerHTML = "Meetings are not editable yet, but the action would be triggered now";
+      console.log("Meeting EDIT")
     },
     loadMeetingsList: function () {
       //const response = await fetch("/db.json");
@@ -210,6 +219,13 @@ export default {
 
       const db = JSON.parse(JSON.stringify(dbData));
       const list = db.meetingList;
+      list.forEach(meeting => {
+        meeting.menuitems.forEach(item => {
+          item.string = item.action == "edit" ? "Edit" : "Delete";
+          item.icon = item.action;
+          item.action = item.action == "edit" ? this.handleMeetingEdit : this.handleMeetingDelete;
+        });
+      });
       this.meetingsList = [...list];
     },
     switchtheme: function () {
