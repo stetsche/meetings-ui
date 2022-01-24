@@ -1,7 +1,8 @@
 <template>
   <div
     :class="[
-      { 'sakai-wrapper': type == 'search' },
+      { 'sakai-wrapper': type == 'date' },
+      { 'sakai-search': type == 'search' },
       { 'sakai-disabled': disabled },
       { 'sakai-invalid': invalid },
       null,
@@ -97,6 +98,8 @@ export default {
 .sakai-wrapper {
   position: relative;
   display: flex;
+}
+.sakai-search {
   min-width: 100px;
   background: var(--sakai-background-color-1);
   border: 1px solid var(--sakai-border-color);
@@ -104,7 +107,7 @@ export default {
   height: 2.25rem;
   width: 100%;
 }
-.sakai-wrapper:focus-within,
+.sakai-search:focus-within,
 input:focus {
   outline: 3px solid var(--focus-outline-color);
 }

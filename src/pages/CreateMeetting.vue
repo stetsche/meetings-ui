@@ -90,30 +90,26 @@
       <sakai-accordion-item title="3. Availability">
         <div class="col-xs-12 col-md-4 col-xl-3 pb-4">
           <div class="row align-items-md-end mb-3">
-            <div class="col">
-              <SakaiInputLabelled title="Open Date" type="date" />
-            </div>
+            <SakaiInputLabelled title="Open Date" type="date" />
           </div>
           <div class="row align-items-md-end mb-3">
-            <div class="col">
-              <SakaiInputLabelled title="Closed Date" type="date" />
-            </div>
+            <SakaiInputLabelled title="Closed Date" type="date" />
           </div>
           <div class="row align-items-md-end mb-3">
-            <div class="col">
-              <SakaiInputLabelled
-                title="Save to Calendar"
-                select="true"
-                value="calendar_google"
-                :items="calendars"
-              />
-            </div>
+            <SakaiInputLabelled
+              title="Save to Calendar"
+              select="true"
+              value="calendar_google"
+              :items="calendars"
+            />
           </div>
         </div>
       </sakai-accordion-item>
       <sakai-accordion-item title="4. Notifications">
         <div class="col-sm-12 col-xl-7 pb-4">
-          <div class="sak-banner-info" v-if="notifications.length === 0">Currently no notifications specified</div>
+          <div class="sak-banner-info" v-if="notifications.length === 0">
+            Currently no notifications specified
+          </div>
           <div
             class="d-flex flex-column gap-3 mb-3 align-items-md-end flex-md-row"
             v-for="notification in notifications"
