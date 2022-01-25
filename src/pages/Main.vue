@@ -171,27 +171,22 @@ export default {
           string: "Templates",
           action: this.handleTemplates,
         },
-      ]
-    };
-  },
-  props: {
-    showAll: {
-      type: Array,
-      default: () => [
+      ],
+      showAll: [
         {
           id: 0,
           icon: "all",
           string: "All",
-          url: "https://translate.google.es/?hl=es&sl=es&tl=en&op=translate",
+          action: this.handleShowAll,
         },
         {
           id: 1,
           icon: "play",
           string: "Recordings",
-          url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
+          action: this.handleShowRecordings,
         },
-      ],
-    },
+      ]
+    };
   },
   methods: {
     handleCreateNewMeeting: function () {
@@ -205,7 +200,12 @@ export default {
     },
     handleMeetingEdit: function () {
       this.$refs.feedback.innerHTML = "Meetings are not editable yet, but the action would be triggered now";
-      console.log("Meeting EDIT")
+    },
+    handleShowAll: function () {
+      this.$refs.feedback.innerHTML = "Displaying all past meetings";
+    },
+    handleShowRecordings: function () {
+      this.$refs.feedback.innerHTML = "Displaying past meetings with recordings";
     },
     loadMeetingsList: function () {
       //const response = await fetch("/db.json");
