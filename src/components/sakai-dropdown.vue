@@ -4,7 +4,7 @@
       <slot name="activation"></slot>
     </div>
     <ul class="dropdown-menu" role="menu" :id="menuid">
-      <li v-for="item in items" :key="item.id">
+      <li v-for="item in items" :key="item.id" class="divider">
         <a
           class="dropdown-item"
           :role="getAnchorRole(item)"
@@ -16,7 +16,7 @@
         >
           <sakai-icon
             :iconkey="item.icon"
-            class="iconWrap"
+            class="icon-wrap"
             :class="item.icon"
           />
           {{ item.string }}
@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       selectedId: null,
-      expanded: false
+      expanded: false,
     };
   },
   computed: {},
@@ -74,9 +74,13 @@ export default {
       this.$router.push({ path: route });
     },
     onMutation: function (mutationsList) {
-      for(const mutation of mutationsList) {
-        if(mutation.type === 'attributes' && mutation.attributeName === 'aria-expanded') {
-          this.expanded = (mutation.target.attributes["aria-expanded"].value === 'true');
+      for (const mutation of mutationsList) {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "aria-expanded"
+        ) {
+          this.expanded =
+            mutation.target.attributes["aria-expanded"].value === "true";
         }
       }
     },
@@ -88,24 +92,26 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import "../assets/sakai-colors.css";
-.iconWrap {
+.icon-wrap {
   width: 16.5px;
   margin-right: 6px;
 }
 .dropdown-menu {
-  min-width: 0 !important;
-  background-color: var(--tool-menu-background-color) !important;
-  box-shadow: var(--elevation-1dp) !important;
-  border: 1px solid var(--button-border-color) !important;
+  background-color: var(--tool-menu-background-color);
+  box-shadow: var(--elevation-1dp);
+  border: 1px solid var(--button-border-color);
 }
-.dropdown-item {
-  padding: 0.35rem 1rem !important;
-  color: var(--tool-menu-item-text-color) !important;
+.dropdown-item,
+.dropdown-item:hover,
+.dropdown-item:focus {
+  padding: 0.35rem 1rem;
+  color: var(--tool-menu-item-text-color);
 }
-.dropdown-item:hover {
-  background-color: var(--tool-menu-item-hover-background-color) !important;
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--tool-menu-item-hover-background-color);
   cursor: pointer;
 }
 .dropdown-item:focus {
@@ -116,17 +122,19 @@ export default {
     inset: auto auto -8px 0px !important;
     transform: unset !important;
     position: fixed !important;
-    padding: 0.6rem 2.5rem 0.8rem 2.5rem !important;
-    box-shadow: 0 0 0 100vmax #9f9f9f42 !important;
-    border-radius: 10px !important;
+    padding: 0.6rem 2.5rem 0.8rem 2.5rem;
+    box-shadow: 0 0 0 100vmax #9f9f9f42;
+    border-radius: 10px;
     width: 100%;
   }
   .dropdown-item {
     padding: 1rem 1rem 1rem 30% !important;
-    border-bottom: 1px solid var(--sakai-border-color) !important;
   }
-  .dropdown-item:last-child {
-    border-bottom: none !important;
+  .divider {
+    border-bottom: 1px solid var(--sakai-border-color);
+  }
+  .divider:last-child {
+    border-bottom: none;
   }
 }
 </style>
