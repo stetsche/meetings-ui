@@ -10,14 +10,14 @@
             <SakaiInputLabelled title="Description" textarea="true" />
           </div>
           <div class="col-xs-12 col-md-4 col-xl-3">
-            <div class="row mt-3 align-items-md-end">
+            <!-- <div class="row mt-3 align-items-md-end">
               <div class="col">
                 <SakaiInputLabelled title="Preupload presentation" />
               </div>
               <div class="col-sm-12 col-md-auto mt-3">
                 <SakaiButton text="Add" class="w-100" />
               </div>
-            </div>
+            </div> -->
             <div class="row mt-3">
               <div class="col">
                 <SakaiInputLabelled
@@ -46,7 +46,7 @@
           </div>
         </div>
       </sakai-accordion-item>
-      <sakai-accordion-item title="2. Participants">
+      <!-- <sakai-accordion-item title="2. Participants">
         <div class="pb-4">
           <div class="row">
             <div class="col-xs-12 col-md-4 col-xl-3">
@@ -86,7 +86,7 @@
             </div>
           </div>
         </div>
-      </sakai-accordion-item>
+      </sakai-accordion-item> -->
       <sakai-accordion-item title="3. Availability">
         <div class="col-xs-12 col-md-4 col-xl-3 pb-4">
           <div class="row align-items-md-end mb-3">
@@ -170,7 +170,7 @@
           </div>
         </div>
       </sakai-accordion-item>
-      <sakai-accordion-item title="5. Meeting Add-ons">
+      <!-- <sakai-accordion-item title="5. Meeting Add-ons">
         <div class="pb-4">
           <div class="d-flex">
             <SakaiInput type="checkbox" />
@@ -178,7 +178,7 @@
           </div>
           <SakaiButton text="Add Poll" :primary="true" class="mt-3" />
         </div>
-      </sakai-accordion-item>
+      </sakai-accordion-item> -->
     </sakai-accordion>
     <div class="d-flex mt-5">
       <SakaiButton
@@ -203,8 +203,8 @@ import SakaiAccordion from "../components/sakai-accordion.vue";
 import SakaiInputLabelled from "../components/sakai-input-labelled.vue";
 import SakaiButton from "../components/sakai-button.vue";
 import SakaiInput from "../components/sakai-input.vue";
-import SakaiParticipantsList from "../components/sakai-participants-list.vue";
-import SakaiSelectedParticipants from "../components/sakai-selected-participants.vue";
+// import SakaiParticipantsList from "../components/sakai-participants-list.vue";
+// import SakaiSelectedParticipants from "../components/sakai-selected-participants.vue";
 import SakaiIcon from "../components/sakai-icon.vue";
 export default {
   components: {
@@ -213,8 +213,8 @@ export default {
     SakaiInputLabelled,
     SakaiButton,
     SakaiInput,
-    SakaiParticipantsList,
-    SakaiSelectedParticipants,
+    // SakaiParticipantsList,
+    // SakaiSelectedParticipants,
     SakaiIcon,
   },
   data() {
