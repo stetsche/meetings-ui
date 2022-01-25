@@ -36,12 +36,6 @@ export default {
           string: "Templates",
           url: "https://getbootstrap.com/docs/5.0/components/card/#list-groups",
         },
-        {
-          id: 2,
-          icon: "fa-link",
-          string: "Link",
-          url: "https://v3.vuejs.org/guide/list.html#v-for-with-a-component",
-        },
       ],
     },
 

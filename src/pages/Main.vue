@@ -171,12 +171,6 @@ export default {
           string: "Templates",
           action: this.handleTemplates,
         },
-        {
-          id: 2,
-          icon: "link",
-          string: "Link",
-          url: "https://edf.global",
-        }
       ]
     };
   },
