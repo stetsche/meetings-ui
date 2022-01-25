@@ -146,8 +146,8 @@
       "description": "This is a description, that describes the purpose and the intention of this meeting verry well. For risks and side effects, ask your doctor or pharmacist.",
       "contextTitle": "Lesson 23: name here",
       "live": true,
-      "startDate": "2021-11-11T14:00:00+01:00",
-      "endDate": "2021-11-11T17:00:00+01:00",
+      "startDate": "2020-01-26T14:00:00+01:00",
+      "endDate": "2022-01-26T17:00:00+01:00",
       "participants": [
         {
           "userid": "454db719-443a-400f-b4d4-4dfada8091c0",
@@ -205,8 +205,8 @@
       "description": "This is a description, that describes the purpose and the intention of this meeting verry well. For risks and side effects, ask your doctor or pharmacist.",
       "contextTitle": "Lesson 23: name here",
       "live": true,
-      "startDate": "2021-11-11T14:00:00+01:00",
-      "endDate": "2021-11-11T17:00:00+01:00",
+      "startDate": "2020-01-26T14:00:00+01:00",
+      "endDate": "2020-01-26T17:00:00+01:00",
       "participants": [
         {
           "userid": "9072hbs3-sb23-sfef-f93r-9q678g7g3qrh",
@@ -277,6 +277,63 @@
         { "id": 0, "action": "edit" },
         { "id": 1, "action": "delete" }
       ]
+    },
+    {
+      "id": 8,
+      "title": "Testing Group",
+      "description": "This is a description, that describes the purpose and the intention of this meeting verry well. For risks and side effects, ask your doctor or pharmacist.",
+      "contextTitle": "Accessibility: Round One",
+      "live": false,
+      "startDate": "2022-01-29T11:30:00+01:00",
+      "endDate": "2022-01-29T12:00:00+01:00",
+      "participants": [],
+      "actions": [
+        {
+          "label": "Presentation",
+          "icon": "presentation",
+          "disabled": false,
+          "href": "https:edf.global"
+        },
+        {
+          "label": "Play Recording",
+          "icon": "play",
+          "disabled": false,
+          "href": "https:edf.global"
+        }
+      ],
+      "menuitems": [
+        { "id": 0, "action": "edit" },
+        { "id": 1, "action": "delete" }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Testing Group",
+      "description": "This is a description, that describes the purpose and the intention of this meeting verry well. For risks and side effects, ask your doctor or pharmacist.",
+      "contextTitle": "Accessibility: Round One",
+      "live": false,
+      "startDate": "2022-01-30T11:30:00+01:00",
+      "endDate": "2022-01-30T12:00:00+01:00",
+      "participants": [],
+      "actions": [
+        {
+          "label": "Presentation",
+          "icon": "presentation",
+          "disabled": false,
+          "href": "https:edf.global"
+        },
+        {
+          "label": "Play Recording",
+          "icon": "play",
+          "disabled": false,
+          "href": "https:edf.global"
+        }
+      ],
+      "menuitems": [
+        { "id": 0, "action": "edit" },
+        { "id": 1, "action": "delete" }
+      ]
     }
+
   ]
 }
