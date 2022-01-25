@@ -24,6 +24,7 @@
                   title="Video conferencing service"
                   select="true"
                   :items="confServ"
+                  value="microsoft_teams"
                 />
               </div>
             </div>
@@ -343,7 +344,6 @@ export default {
         newNotification.id =
           this.notifications[this.notifications.length - 1].id + 1;
       }
-      console.log(this.notifications);
       let updatedNotifications = [...this.notifications];
       updatedNotifications.push(newNotification);
       this.$set(this, "notifications", updatedNotifications);
