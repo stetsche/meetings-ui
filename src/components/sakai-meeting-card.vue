@@ -1,5 +1,8 @@
 <template>
   <div class="card" aria-describedby="title">
+    <div class="card-header h-100">
+      <div class="mt-1 mb-2 contextTitle">{{ contextTitle }}</div>
+      <h2 id="title" class="card-title" :title="title">{{ title }}</h2>
     <SakaiDropdownButton
       :items="menuitems"
       class="card-menu"
@@ -12,9 +15,6 @@
         <sakai-icon iconkey="menu_kebab" />
       </template>
     </SakaiDropdownButton>
-    <div class="card-header h-100">
-      <div class="mt-1 mb-2 contextTitle">{{ contextTitle }}</div>
-      <h2 id="title" class="card-title" :title="title">{{ title }}</h2>
       <div class="d-flex flex-row flex-wrap mb-2">
         <div>
           {{ schedule }}
