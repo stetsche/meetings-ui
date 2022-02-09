@@ -91,10 +91,10 @@
       <sakai-accordion-item title="3. Availability">
         <div class="col-xs-12 col-md-4 col-xl-3 pb-4">
           <div class="row align-items-md-end mb-3">
-            <SakaiInputLabelled title="Open Date" type="date" />
+            <SakaiInputLabelled title="Open Date" type="datetime-local" />
           </div>
           <div class="row align-items-md-end mb-3">
-            <SakaiInputLabelled title="Closed Date" type="date" />
+            <SakaiInputLabelled title="Closed Date" type="datetime-local" />
           </div>
           <div class="row align-items-md-end mb-3">
             <SakaiInputLabelled
