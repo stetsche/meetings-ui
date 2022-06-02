@@ -1,3 +1,5 @@
+**This repository is archived.** Please check out [the full meetings tool](https://github.com/sakaicontrib/meetings) if you are interested.
+
 # meetings-ui
 
 ## Project setup
